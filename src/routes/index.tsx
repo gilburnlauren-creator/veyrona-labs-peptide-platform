@@ -287,6 +287,8 @@ function Index() {
             </div>
           </div>
         </section>
+
+        <EmailSignup />
       </main>
       <SiteFooter />
     </div>
