@@ -140,6 +140,7 @@ function ProductPage() {
               <li className="flex gap-3"><Truck className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><span><strong>Free shipping on all orders with Canada Post Express.</strong> Placed before 2PM ET? It ships the same business day, tracked and discreetly packaged.</span></li>
               <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><span><strong>Secure checkout.</strong> Encrypted payment processing with no compound details on your statement.</span></li>
               <li className="flex gap-3"><Package className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><span><strong>Sealed & batch-labelled.</strong> Every vial carries its batch reference so results trace back to documented analysis.</span></li>
+              <li className="flex gap-3"><Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><span><strong>Made in Canada.</strong> Produced and packaged domestically with accredited manufacturing partners.</span></li>
             </ul>
 
             {/* Lab verified panel */}
