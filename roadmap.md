@@ -1,10 +1,10 @@
 # Roadmap
 
-- [x] Product detail pages (`/products/$slug`) modelled on the reference layout
-- [x] Icons/checkmarks on homepage trust strip
-- [x] Add Retatrutide; best sellers order: Retatrutide, BPC-157, GLOW, GHK-Cu, then rest
-- [x] Size dropdown (10/20/30/50mg) with per-size pricing on product pages
-- [x] Header/footer: free Canada Post Express shipping + LABS 30% code
-- [ ] Trust checkmarks across the rest of the site (shop, about, COAs)
-- [ ] Shipping/promo mention in homepage FAQ + hero
-- [ ] Email signup section (newsletter capture) on the site
+- [x] Product detail pages (`/products/$slug`)
+- [x] Trust checkmarks/icons site-wide
+- [x] Retatrutide added; best sellers: Retatrutide, BPC-157, GLOW, GHK-Cu, then rest
+- [x] Size dropdown (10/20/30/50mg) with per-size pricing
+- [x] Free Canada Post Express shipping + code LABS 30% off everywhere (banner, header, footer, product pages, shop, about, FAQ)
+- [x] "Made in Canada" across the site
+- [x] Email signup section on the home page
+- [ ] Waiting on the real product list and prices from the user
