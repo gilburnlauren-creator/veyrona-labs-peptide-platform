@@ -1,0 +1,83 @@
+import { Link } from "@tanstack/react-router";
+import logo from "@/assets/veyrona-logo.png";
+
+const nav = [
+  { to: "/shop", label: "Shop" },
+  { to: "/coas", label: "COAs" },
+  { to: "/about", label: "About" },
+];
+
+export function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur">
+      <div className="bg-ink text-ink-foreground">
+        <div className="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-xs tracking-wide">
+          <span>Free Canada-wide shipping over $200</span>
+          <span className="opacity-60">·</span>
+          <span>Same-day dispatch before 2PM ET</span>
+        </div>
+      </div>
+      <div className="container-page flex h-16 items-center justify-between">
+        <Link to="/" className="flex items-center gap-2.5">
+          <img src={logo} alt="Veyrona Labs" width={36} height={36} className="h-9 w-9" />
+          <span className="font-display text-lg font-semibold tracking-tight">
+            Veyrona <span className="text-primary">Labs</span>
+          </span>
+        </Link>
+        <nav className="hidden items-center gap-7 text-sm font-medium md:flex">
+          {nav.map((n) => (
+            <Link key={n.to} to={n.to} className="text-muted-foreground transition-colors hover:text-primary">
+              {n.label}
+            </Link>
+          ))}
+        </nav>
+        <Link
+          to="/shop"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+        >
+          Shop Peptides
+        </Link>
+      </div>
+    </header>
+  );
+}
+
+export function SiteFooter() {
+  return (
+    <footer className="mt-24 border-t border-border bg-ink text-ink-foreground">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-4">
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-2.5">
+            <img src={logo} alt="" width={32} height={32} loading="lazy" className="h-8 w-8" />
+            <span className="font-display text-lg font-semibold">Veyrona Labs</span>
+          </div>
+          <p className="mt-4 max-w-sm text-sm opacity-70">
+            Canadian supplier of laboratory research peptides with batch tracking, third-party
+            analysis and tracked domestic shipping.
+          </p>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold">Shop</h3>
+          <ul className="mt-4 space-y-2 text-sm opacity-70">
+            <li><Link to="/shop">All products</Link></li>
+            <li><Link to="/coas">Certificates of analysis</Link></li>
+            <li><Link to="/about">About us</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold">Contact</h3>
+          <ul className="mt-4 space-y-2 text-sm opacity-70">
+            <li>support@veyronalabs.ca</li>
+            <li>Ships from Canada</li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-white/10">
+        <div className="container-page py-6 text-xs leading-relaxed opacity-60">
+          All products sold by Veyrona Labs are intended for laboratory research use only. Not for
+          human or veterinary consumption, diagnostic or therapeutic use. © {new Date().getFullYear()} Veyrona Labs.
+        </div>
+      </div>
+    </footer>
+  );
+}
