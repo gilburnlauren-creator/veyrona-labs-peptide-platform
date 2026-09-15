@@ -38,8 +38,16 @@ const faqs = [
     a: "Yes. Every batch is analysed for identity and purity, and the corresponding certificate of analysis is published on our COA page.",
   },
   {
+    q: "How much does shipping cost?",
+    a: "Shipping is free on all orders. Every parcel goes out with Canada Post Express, fully tracked and discreetly packaged.",
+  },
+  {
+    q: "Do you have a discount code?",
+    a: "Yes — enter code LABS at checkout for 30% off your entire order. It works on every research compound we stock.",
+  },
+  {
     q: "How fast do orders ship in Canada?",
-    a: "Orders placed before 2PM ET on a business day are dispatched the same day with tracked, discreet packaging.",
+    a: "Orders placed before 2PM ET on a business day are dispatched the same day via Canada Post Express.",
   },
   {
     q: "What are these products used for?",
@@ -50,6 +58,60 @@ const faqs = [
     a: "We currently focus on Canadian domestic shipping so orders clear quickly and arrive without customs delays.",
   },
 ];
+
+function EmailSignup() {
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+
+  return (
+    <section className="border-y border-border bg-ink text-ink-foreground">
+      <div className="container-page grid gap-8 py-14 md:grid-cols-2 md:items-center">
+        <div>
+          <h2 className="font-display text-2xl font-semibold">Get 30% off with code LABS</h2>
+          <p className="mt-3 max-w-md text-sm opacity-75">
+            Join the Veyrona Labs list for new batch releases, certificate uploads and restock
+            alerts. Free Canada Post Express shipping on every order.
+          </p>
+        </div>
+        {sent ? (
+          <p className="flex items-center gap-2 text-sm font-medium">
+            <Check className="h-4 w-4 text-primary" /> Thanks — you're on the list.
+          </p>
+        ) : (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const value = email.trim();
+              if (!value || value.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return;
+              setSent(true);
+            }}
+            className="flex flex-col gap-3 sm:flex-row"
+          >
+            <label htmlFor="newsletter-email" className="sr-only">
+              Email address
+            </label>
+            <input
+              id="newsletter-email"
+              type="email"
+              required
+              maxLength={255}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@lab.ca"
+              className="w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/50 focus:border-primary focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="shrink-0 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Sign up
+            </button>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
 
 function Index() {
   return (
