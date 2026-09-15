@@ -3,11 +3,11 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
 import { products, categories } from "@/data/products";
 
-type ShopSearch = { category?: string };
+type ShopSearch = { category?: string | undefined };
 
 export const Route = createFileRoute("/shop")({
   validateSearch: (search: Record<string, unknown>): ShopSearch => ({
-    category: typeof search.category === "string" ? search.category : undefined,
+    category: typeof search["category"] === "string" ? search["category"] : undefined,
   }),
   head: () => ({
     meta: [
