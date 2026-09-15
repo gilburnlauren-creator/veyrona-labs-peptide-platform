@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import {
   BadgeCheck,
+  Check,
   FlaskConical,
   Truck,
   ShieldCheck,
