@@ -76,8 +76,11 @@ export function SiteFooter() {
             <span className="font-display text-lg font-semibold">Veyrona Labs</span>
           </div>
           <p className="mt-4 max-w-sm text-sm opacity-70">
-            Canadian supplier of laboratory research peptides with batch tracking, third-party
-            analysis and tracked domestic shipping.
+            Made in Canada. Laboratory research peptides with batch tracking, third-party analysis
+            and free Canada Post Express shipping on every order.
+          </p>
+          <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/20 px-3 py-1 text-xs font-semibold">
+            <Leaf className="h-3.5 w-3.5 text-primary" /> Made in Canada
           </p>
         </div>
         <div>
@@ -94,6 +97,7 @@ export function SiteFooter() {
             <li>support@veyronalabs.ca</li>
             <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Free shipping on all orders with Canada Post Express</li>
             <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Use code LABS for 30% off</li>
+            <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Made in Canada</li>
           </ul>
         </div>
       </div>
