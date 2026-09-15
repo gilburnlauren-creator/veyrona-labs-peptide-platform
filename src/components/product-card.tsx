@@ -40,6 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
         <ul className="space-y-1 text-[11px] text-muted-foreground">
           <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Third-party lab tested</li>
           <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Free Canada Post Express</li>
+          <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Made in Canada</li>
         </ul>
         <div className="mt-auto flex items-center justify-between pt-3">
           <span className="font-display text-base font-semibold">
