@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
 import { products, categories } from "@/data/products";
@@ -37,9 +38,21 @@ function Shop() {
       <main className="container-page py-14">
         <h1 className="font-display text-3xl font-semibold">Shop Research Peptides</h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-          Every Veyrona Labs compound is batch-tracked and supplied strictly for laboratory
-          research use. Prices shown in CAD.
+          Every Veyrona Labs compound is made in Canada, batch-tracked and supplied strictly for
+          laboratory research use. Prices shown in CAD.
         </p>
+        <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-muted-foreground">
+          {[
+            "Made in Canada",
+            "Third-party lab tested",
+            "Free shipping with Canada Post Express",
+            "Code LABS — 30% off",
+          ].map((t) => (
+            <li key={t} className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-primary" /> {t}
+            </li>
+          ))}
+        </ul>
 
         <div className="mt-8 flex flex-wrap gap-2">
           <Link

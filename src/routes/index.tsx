@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
-import { products, categories } from "@/data/products";
+import { bestSellers, categories } from "@/data/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,10 +27,10 @@ export const Route = createFileRoute("/")({
 });
 
 const trust = [
-  { title: "99%+ Purity Verified", body: "Every batch tested for consistency and research-grade standards." },
-  { title: "Fast Canada Shipping", body: "Discreet tracked delivery, dispatched same or next business day." },
-  { title: "Batch-Tracked Quality", body: "Each vial is documented and traceable for reliable research use." },
-  { title: "Verified Sourcing", body: "Compounds sourced from vetted, accredited manufacturing partners." },
+  { icon: BadgeCheck, title: "99%+ Purity Verified", body: "Every batch tested for consistency and research-grade standards." },
+  { icon: Truck, title: "Fast Canada Shipping", body: "Discreet tracked delivery, dispatched same or next business day." },
+  { icon: PackageCheck, title: "Batch-Tracked Quality", body: "Each vial is documented and traceable for reliable research use." },
+  { icon: ShieldCheck, title: "Made in Canada", body: "Produced and packaged in Canada by vetted, accredited partners." },
 ];
 
 const faqs = [
@@ -37,8 +39,16 @@ const faqs = [
     a: "Yes. Every batch is analysed for identity and purity, and the corresponding certificate of analysis is published on our COA page.",
   },
   {
+    q: "How much does shipping cost?",
+    a: "Shipping is free on all orders. Every parcel goes out with Canada Post Express, fully tracked and discreetly packaged.",
+  },
+  {
+    q: "Do you have a discount code?",
+    a: "Yes — enter code LABS at checkout for 30% off your entire order. It works on every research compound we stock.",
+  },
+  {
     q: "How fast do orders ship in Canada?",
-    a: "Orders placed before 2PM ET on a business day are dispatched the same day with tracked, discreet packaging.",
+    a: "Orders placed before 2PM ET on a business day are dispatched the same day via Canada Post Express.",
   },
   {
     q: "What are these products used for?",
@@ -49,6 +59,60 @@ const faqs = [
     a: "We currently focus on Canadian domestic shipping so orders clear quickly and arrive without customs delays.",
   },
 ];
+
+function EmailSignup() {
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+
+  return (
+    <section className="border-y border-border bg-ink text-ink-foreground">
+      <div className="container-page grid gap-8 py-14 md:grid-cols-2 md:items-center">
+        <div>
+          <h2 className="font-display text-2xl font-semibold">Get 30% off with code LABS</h2>
+          <p className="mt-3 max-w-md text-sm opacity-75">
+            Join the Veyrona Labs list for new batch releases, certificate uploads and restock
+            alerts. Free Canada Post Express shipping on every order.
+          </p>
+        </div>
+        {sent ? (
+          <p className="flex items-center gap-2 text-sm font-medium">
+            <Check className="h-4 w-4 text-primary" /> Thanks — you're on the list.
+          </p>
+        ) : (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const value = email.trim();
+              if (!value || value.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return;
+              setSent(true);
+            }}
+            className="flex flex-col gap-3 sm:flex-row"
+          >
+            <label htmlFor="newsletter-email" className="sr-only">
+              Email address
+            </label>
+            <input
+              id="newsletter-email"
+              type="email"
+              required
+              maxLength={255}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@lab.ca"
+              className="w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-ink-foreground placeholder:text-ink-foreground/50 focus:border-primary focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="shrink-0 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Sign up
+            </button>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
 
 function Index() {
   return (
@@ -84,9 +148,16 @@ function Index() {
                 </Link>
               </div>
               <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium text-muted-foreground">
-                <li>Lab Tested</li>
-                <li>COAs Available</li>
-                <li>Fast Shipping</li>
+                {[
+                  "Made in Canada",
+                  "Lab Tested",
+                  "COAs Available",
+                  "Free Canada Post Express",
+                ].map((t) => (
+                  <li key={t} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-primary" /> {t}
+                  </li>
+                ))}
               </ul>
             </div>
             <img
@@ -103,9 +174,14 @@ function Index() {
         <section className="border-b border-border bg-card">
           <div className="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
             {trust.map((t) => (
-              <div key={t.title}>
-                <h3 className="font-display text-base font-semibold">{t.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
+              <div key={t.title} className="flex gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <t.icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="font-display text-base font-semibold">{t.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -122,7 +198,7 @@ function Index() {
             fast Canadian shipping and available certificates of analysis.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {products.slice(0, 8).map((p) => (
+            {bestSellers.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
           </div>
@@ -211,6 +287,8 @@ function Index() {
             </div>
           </div>
         </section>
+
+        <EmailSignup />
       </main>
       <SiteFooter />
     </div>

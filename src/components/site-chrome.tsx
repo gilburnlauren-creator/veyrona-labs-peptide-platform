@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Check, Truck, Tag, Leaf } from "lucide-react";
 import logo from "@/assets/veyrona-logo.png";
 
 const nav = [
@@ -7,14 +8,37 @@ const nav = [
   { to: "/about", label: "About" },
 ];
 
+export function PromoBanner() {
+  return (
+    <div className="bg-primary text-primary-foreground">
+      <div className="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-xs font-semibold tracking-wide">
+        <span className="flex items-center gap-1.5">
+          <Truck className="h-3.5 w-3.5" /> Free shipping on all orders with Canada Post Express
+        </span>
+        <span className="flex items-center gap-1.5">
+          <Tag className="h-3.5 w-3.5" /> Use code LABS for 30% off
+        </span>
+        <span className="flex items-center gap-1.5">
+          <Leaf className="h-3.5 w-3.5" /> Made in Canada
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur">
+      <PromoBanner />
       <div className="bg-ink text-ink-foreground">
         <div className="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-xs tracking-wide">
-          <span>Free Canada-wide shipping over $200</span>
+          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Free Canada Post Express on every order</span>
           <span className="opacity-60">·</span>
-          <span>Same-day dispatch before 2PM ET</span>
+          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Same-day dispatch before 2PM ET</span>
+          <span className="opacity-60">·</span>
+          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Third-party tested</span>
+          <span className="opacity-60">·</span>
+          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Made in Canada</span>
         </div>
       </div>
       <div className="container-page flex h-16 items-center justify-between">
@@ -52,8 +76,11 @@ export function SiteFooter() {
             <span className="font-display text-lg font-semibold">Veyrona Labs</span>
           </div>
           <p className="mt-4 max-w-sm text-sm opacity-70">
-            Canadian supplier of laboratory research peptides with batch tracking, third-party
-            analysis and tracked domestic shipping.
+            Made in Canada. Laboratory research peptides with batch tracking, third-party analysis
+            and free Canada Post Express shipping on every order.
+          </p>
+          <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/20 px-3 py-1 text-xs font-semibold">
+            <Leaf className="h-3.5 w-3.5 text-primary" /> Made in Canada
           </p>
         </div>
         <div>
@@ -65,10 +92,12 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold">Contact</h3>
+          <h3 className="text-sm font-semibold">Contact & Shipping</h3>
           <ul className="mt-4 space-y-2 text-sm opacity-70">
             <li>support@veyronalabs.ca</li>
-            <li>Ships from Canada</li>
+            <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Free shipping on all orders with Canada Post Express</li>
+            <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Use code LABS for 30% off</li>
+            <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Made in Canada</li>
           </ul>
         </div>
       </div>
