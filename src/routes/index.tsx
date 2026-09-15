@@ -30,7 +30,7 @@ const trust = [
   { icon: BadgeCheck, title: "99%+ Purity Verified", body: "Every batch tested for consistency and research-grade standards." },
   { icon: Truck, title: "Fast Canada Shipping", body: "Discreet tracked delivery, dispatched same or next business day." },
   { icon: PackageCheck, title: "Batch-Tracked Quality", body: "Each vial is documented and traceable for reliable research use." },
-  { icon: ShieldCheck, title: "Verified Sourcing", body: "Compounds sourced from vetted, accredited manufacturing partners." },
+  { icon: ShieldCheck, title: "Made in Canada", body: "Produced and packaged in Canada by vetted, accredited partners." },
 ];
 
 const faqs = [
