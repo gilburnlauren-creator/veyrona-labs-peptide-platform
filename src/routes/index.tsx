@@ -148,7 +148,12 @@ function Index() {
                 </Link>
               </div>
               <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium text-muted-foreground">
-                {["Lab Tested", "COAs Available", "Fast Shipping"].map((t) => (
+                {[
+                  "Made in Canada",
+                  "Lab Tested",
+                  "COAs Available",
+                  "Free Canada Post Express",
+                ].map((t) => (
                   <li key={t} className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-primary" /> {t}
                   </li>
