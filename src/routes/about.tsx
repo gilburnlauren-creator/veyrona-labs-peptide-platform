@@ -28,9 +28,21 @@ function About() {
         <h1 className="font-display text-3xl font-semibold">About Veyrona Labs</h1>
         <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
           Veyrona Labs is a Canadian supplier of research peptides for laboratory and in-vitro
-          study. We work with accredited manufacturing partners, verify each lot through
-          independent analysis, and keep every vial traceable to its batch record.
+          study. Everything we sell is made in Canada with accredited manufacturing partners,
+          verified lot by lot through independent analysis and traceable to its batch record.
         </p>
+        <ul className="mt-6 grid gap-2 text-sm font-medium sm:grid-cols-2">
+          {[
+            "Made in Canada",
+            "Third-party lab tested",
+            "Free shipping on all orders with Canada Post Express",
+            "Use code LABS for 30% off",
+          ].map((t) => (
+            <li key={t} className="flex items-center gap-2">
+              <Check className="h-4 w-4 shrink-0 text-primary" /> {t}
+            </li>
+          ))}
+        </ul>
         <h2 className="mt-10 font-display text-xl font-semibold">Quality standards</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           Compounds are lyophilised, sealed and stored cold until dispatch. Identity and purity
@@ -39,8 +51,9 @@ function About() {
         </p>
         <h2 className="mt-10 font-display text-xl font-semibold">Shipping</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Orders ship from within Canada in plain, discreet packaging with tracking. Orders placed
-          before 2PM ET on a business day are dispatched the same day.
+          Shipping is free on every order and always goes out with Canada Post Express — tracked,
+          plain and discreet. Orders placed before 2PM ET on a business day are dispatched the same
+          day.
         </p>
         <h2 className="mt-10 font-display text-xl font-semibold">Research use only</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
