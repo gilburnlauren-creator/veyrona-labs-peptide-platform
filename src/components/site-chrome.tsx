@@ -30,17 +30,6 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur">
       <PromoBanner />
-      <div className="bg-ink text-ink-foreground">
-        <div className="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-xs tracking-wide">
-          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Free Canada Post Express on every order</span>
-          <span className="opacity-60">·</span>
-          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Same-day dispatch before 2PM ET</span>
-          <span className="opacity-60">·</span>
-          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Third-party tested</span>
-          <span className="opacity-60">·</span>
-          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Made in Canada</span>
-        </div>
-      </div>
       <div className="container-page flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5">
           <img src={logo} alt="Veyrona Labs" width={36} height={36} className="h-9 w-9" />
