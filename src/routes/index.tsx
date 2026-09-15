@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
-import { products, categories } from "@/data/products";
+import { bestSellers, categories } from "@/data/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,10 +26,10 @@ export const Route = createFileRoute("/")({
 });
 
 const trust = [
-  { title: "99%+ Purity Verified", body: "Every batch tested for consistency and research-grade standards." },
-  { title: "Fast Canada Shipping", body: "Discreet tracked delivery, dispatched same or next business day." },
-  { title: "Batch-Tracked Quality", body: "Each vial is documented and traceable for reliable research use." },
-  { title: "Verified Sourcing", body: "Compounds sourced from vetted, accredited manufacturing partners." },
+  { icon: BadgeCheck, title: "99%+ Purity Verified", body: "Every batch tested for consistency and research-grade standards." },
+  { icon: Truck, title: "Fast Canada Shipping", body: "Discreet tracked delivery, dispatched same or next business day." },
+  { icon: PackageCheck, title: "Batch-Tracked Quality", body: "Each vial is documented and traceable for reliable research use." },
+  { icon: ShieldCheck, title: "Verified Sourcing", body: "Compounds sourced from vetted, accredited manufacturing partners." },
 ];
 
 const faqs = [
@@ -84,9 +85,11 @@ function Index() {
                 </Link>
               </div>
               <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium text-muted-foreground">
-                <li>Lab Tested</li>
-                <li>COAs Available</li>
-                <li>Fast Shipping</li>
+                {["Lab Tested", "COAs Available", "Fast Shipping"].map((t) => (
+                  <li key={t} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-primary" /> {t}
+                  </li>
+                ))}
               </ul>
             </div>
             <img
@@ -103,9 +106,14 @@ function Index() {
         <section className="border-b border-border bg-card">
           <div className="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
             {trust.map((t) => (
-              <div key={t.title}>
-                <h3 className="font-display text-base font-semibold">{t.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
+              <div key={t.title} className="flex gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <t.icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="font-display text-base font-semibold">{t.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -122,7 +130,7 @@ function Index() {
             fast Canadian shipping and available certificates of analysis.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {products.slice(0, 8).map((p) => (
+            {bestSellers.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
           </div>
