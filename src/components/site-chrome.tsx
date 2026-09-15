@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Check, Truck, Tag } from "lucide-react";
+import { Check, Truck, Tag, Leaf } from "lucide-react";
 import logo from "@/assets/veyrona-logo.png";
 
 const nav = [
@@ -18,6 +18,9 @@ export function PromoBanner() {
         <span className="flex items-center gap-1.5">
           <Tag className="h-3.5 w-3.5" /> Use code LABS for 30% off
         </span>
+        <span className="flex items-center gap-1.5">
+          <Leaf className="h-3.5 w-3.5" /> Made in Canada
+        </span>
       </div>
     </div>
   );
@@ -34,6 +37,8 @@ export function SiteHeader() {
           <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Same-day dispatch before 2PM ET</span>
           <span className="opacity-60">·</span>
           <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Third-party tested</span>
+          <span className="opacity-60">·</span>
+          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-primary" /> Made in Canada</span>
         </div>
       </div>
       <div className="container-page flex h-16 items-center justify-between">
