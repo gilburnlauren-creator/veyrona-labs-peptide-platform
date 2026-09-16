@@ -13,7 +13,7 @@ export function PromoBanner() {
     <div className="bg-primary text-primary-foreground">
       <div className="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-xs font-semibold tracking-wide">
         <span className="flex items-center gap-1.5">
-          <Truck className="h-3.5 w-3.5" /> Free shipping on all orders with Canada Post Express
+          <Truck className="h-3.5 w-3.5" /> Free shipping on all orders
         </span>
         <span className="flex items-center gap-1.5">
           <Tag className="h-3.5 w-3.5" /> Use code LABS for 30% off
