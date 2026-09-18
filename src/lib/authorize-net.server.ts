@@ -72,6 +72,8 @@ export async function chargeCard(input: ChargeInput): Promise<ChargeResult> {
   if (!creds) return { ok: false, error: "Payments are not configured yet.", code: "NOT_CONFIGURED" };
 
   const [firstName, ...rest] = input.address.fullName.trim().split(/\s+/);
+  const billing = input.billingAddress ?? input.address;
+  const [billFirst, ...billRest] = billing.fullName.trim().split(/\s+/);
   const body = {
     createTransactionRequest: {
       merchantAuthentication: { name: creds.name, transactionKey: creds.transactionKey },
