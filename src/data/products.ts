@@ -437,10 +437,10 @@ export const bestSellers: Product[] = [
 ].slice(0, 8);
 
 export const categories = [
-  { name: "Metabolic Research", blurb: "Batch-tracked metabolic compounds including MOTS-C.", key: "Metabolic" },
-  { name: "Cellular Research", blurb: "BPC-157, TB-500, GHK-Cu, KPV and related compounds.", key: "Cellular" },
-  { name: "Secretagogue Research", blurb: "CJC-1295, Ipamorelin, Sermorelin, Tesamorelin.", key: "Secretagogue" },
-  { name: "Neuro Research", blurb: "Semax, Selank, DSIP and nootropic research compounds.", key: "Neuro" },
-  { name: "Peptide Blends", blurb: "GLOW, KLOW, CJC/IPA and combination vials.", key: "Blends" },
-  { name: "Laboratory Supplies", blurb: "Bacteriostatic water, storage cases, lab essentials.", key: "Lab Supplies" },
+  { name: "Metabolic Research (weight loss & fat metabolism)", blurb: "Batch-tracked metabolic compounds including Retatrutide and MOTS-C.", key: "Metabolic" },
+  { name: "Cellular Research (recovery, healing & skin)", blurb: "BPC-157, TB-500, GHK-Cu, KPV and related compounds.", key: "Cellular" },
+  { name: "Secretagogue Research (growth hormone & anti-ageing)", blurb: "CJC-1295, Ipamorelin, Sermorelin, Tesamorelin.", key: "Secretagogue" },
+  { name: "Neuro Research (focus, mood & cognition)", blurb: "Semax, Selank, DSIP and nootropic research compounds.", key: "Neuro" },
+  { name: "Peptide Blends (beauty, glow & repair stacks)", blurb: "GLOW, KLOW, CJC/IPA and combination vials.", key: "Blends" },
+  { name: "Laboratory Supplies (reconstitution & bench essentials)", blurb: "Bacteriostatic water, storage cases, lab essentials.", key: "Lab Supplies" },
 ];
