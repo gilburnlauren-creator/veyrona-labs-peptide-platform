@@ -20,7 +20,7 @@ export function getSql() {
     }
     _sql = postgres(url, {
       max: Number(process.env["DATABASE_POOL_MAX"] ?? 10),
-      ssl: process.env["DATABASE_SSL"] === "true" ? "require" : undefined,
+      ...(process.env["DATABASE_SSL"] === "true" ? { ssl: "require" as const } : {}),
     });
   }
   return _sql;
