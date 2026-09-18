@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
-import vial from "@/assets/vial.jpg";
+import { vialImage } from "@/data/vial-images";
 import type { Product } from "@/data/products";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -16,7 +16,7 @@ export function ProductCard({ product }: { product: Product }) {
       )}
       <Link to="/products/$slug" params={{ slug: product.slug }} className="bg-surface p-6">
         <img
-          src={vial}
+          src={vialImage(product.slug)}
           alt={`${product.name} research vial`}
           width={816}
           height={816}
