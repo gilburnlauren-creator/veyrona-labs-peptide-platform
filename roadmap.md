@@ -18,3 +18,4 @@
 - [ ] Working cart (drawer UI) + gentle upsells (bac water, syringes)
 - [ ] Syringes product page
 - [ ] All products: 5 stars, +18 reviews each
+- [ ] Cart totals: Canada Post Express shipping shown as -$25.00 in red (free shipping saving)
