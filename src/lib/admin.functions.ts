@@ -13,6 +13,29 @@ export type AdminOrderRow = {
   created_at: string;
 };
 
+export type AdminOrderFull = {
+  id: number;
+  order_number: string;
+  email: string;
+  status: string;
+  payment_status: string;
+  transaction_id: string | null;
+  auth_code: string | null;
+  avs_result: string | null;
+  coupon_code: string | null;
+  subtotal_cents: number;
+  discount_cents: number;
+  tax_cents: number;
+  shipping_cents: number;
+  total_cents: number;
+  tracking_number: string | null;
+  shipping_address: {
+    fullName: string; line1: string; line2?: string; city: string;
+    province: string; postalCode: string; phone?: string;
+  };
+  created_at: string;
+};
+
 export const adminSession = createServerFn({ method: "GET" }).handler(async () => {
   const { currentAdmin } = await import("./admin.server");
   const { databaseConfigured } = await import("@/db/client.server");
@@ -76,7 +99,11 @@ export const adminOrderDetail = createServerFn({ method: "POST" })
     await requireAdmin();
     const { getSql } = await import("@/db/client.server");
     const sql = getSql();
-    const rows = await sql<Record<string, unknown>[]>`SELECT * FROM orders WHERE id = ${data.id} LIMIT 1`;
+    const rows = await sql<AdminOrderFull[]>`
+      SELECT id, order_number, email, status, payment_status, transaction_id, auth_code, avs_result,
+             coupon_code, subtotal_cents, discount_cents, tax_cents, shipping_cents, total_cents,
+             tracking_number, shipping_address, created_at
+      FROM orders WHERE id = ${data.id} LIMIT 1`;
     if (!rows[0]) return null;
     const items = await sql<
       { slug: string; name: string; size_label: string; quantity: number; line_total_cents: number }[]
