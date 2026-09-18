@@ -17,8 +17,8 @@ export const PROVINCES: { code: ProvinceCode; name: string; rate: number }[] = [
   { code: "YT", name: "Yukon", rate: 0.05 },
 ];
 
-export const taxRateFor = (province?: string | null) =>
-  PROVINCES.find((p) => p.code === province)?.rate ?? 0;
+/** Tax is not charged to customers — it is covered by Veyrona Labs. */
+export const taxRateFor = (_province?: string | null) => 0;
 
 export const money = (cents: number) =>
   `$${(cents / 100).toLocaleString("en-CA", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
