@@ -82,7 +82,7 @@ function ProductPage() {
         <section className="container-page grid gap-10 py-8 md:grid-cols-2">
           <div className="rounded-lg border border-border bg-surface p-10">
             <img
-              src={vial}
+              src={vialImage(product.slug)}
               alt={`${product.name} ${product.size} lyophilised research vial from Veyrona Labs`}
               width={816}
               height={816}
