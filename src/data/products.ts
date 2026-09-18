@@ -164,6 +164,7 @@ const seed: Seed[] = [
     detail: {
       cas: "Blend — see components",
       aka: "GHK-Cu + BPC-157 + TB-500 combination vial",
+      overview: "The GLOW Blend is the beauty and rejuvenation stack. Combining GHK-Cu, BPC-157 and TB-500, it is researched for glowing skin, collagen support, hair health, tissue repair and full-body recovery — all in one vial.",
       className: "Multi-peptide research blend",
       molecularWeight: "Mixed",
       sequenceLength: "Mixed",
@@ -189,6 +190,7 @@ const seed: Seed[] = [
     reviews: 6,
     detail: {
       cas: "1627580-64-6",
+      overview: "MOTS-C is a mitochondrial peptide studied in energy, metabolism and longevity research. Researchers explore it for fat metabolism, exercise performance, cellular energy and healthy aging.",
       aka: "Mitochondrial ORF of the 12S rRNA type-c",
       className: "Mitochondrial-derived peptide / metabolic research tool",
       molecularWeight: "~2174.6 Da",
@@ -216,6 +218,7 @@ const seed: Seed[] = [
     detail: {
       cas: "Blend — see components",
       aka: "KPV + GHK-Cu + BPC-157 + TB-500 combination vial",
+      overview: "The KLOW Blend builds on the GLOW formula by adding KPV, creating a four-peptide stack researched for skin and beauty, inflammation control, gut health, tissue repair and full-body recovery.",
       className: "Multi-peptide research blend",
       molecularWeight: "Mixed",
       sequenceLength: "Mixed",
@@ -241,6 +244,7 @@ const seed: Seed[] = [
     reviews: 8,
     detail: {
       cas: "863288-34-0 / 170851-70-4",
+      overview: "CJC-1295 + Ipamorelin is the classic growth hormone secretagogue stack. Researchers study this pairing for muscle growth, fat loss, improved sleep, recovery and anti-aging through natural growth hormone release.",
       aka: "Modified GRF (1-29) + Ipamorelin",
       className: "Growth hormone secretagogue research blend",
       molecularWeight: "~3368 Da / ~711.9 Da",
