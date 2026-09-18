@@ -10,6 +10,7 @@ export type ProductDetail = {
   tested: string;
   purity: string;
   summary: string;
+  overview?: string;
   research: { title: string; body: string }[];
   tags: string[];
   storage: string;
