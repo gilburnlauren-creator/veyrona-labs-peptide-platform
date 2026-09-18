@@ -36,6 +36,7 @@ const addressSchema = z.object({
 const placeOrderSchema = z.object({
   email: z.string().email().max(160),
   address: addressSchema,
+  billingAddress: addressSchema.optional(),
   items: z.array(itemSchema).min(1).max(50),
   couponCode: z.string().max(40).optional().nullable(),
   idempotencyKey: z.string().min(8).max(80),
@@ -94,6 +95,7 @@ export const placeOrder = createServerFn({ method: "POST" })
         email: data.email,
         invoiceNumber,
         address: data.address,
+        billingAddress: data.billingAddress,
         lineItems: quote.lines.map((l) => ({
           name: `${l.name} ${l.size}`,
           quantity: l.quantity,

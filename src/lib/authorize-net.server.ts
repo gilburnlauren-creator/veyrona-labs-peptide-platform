@@ -58,6 +58,8 @@ export type ChargeInput = {
   email: string;
   invoiceNumber: string;
   address: ShippingAddress;
+  /** Billing address as it appears on the card; defaults to the shipping address. */
+  billingAddress?: ShippingAddress | undefined;
   lineItems: { name: string; quantity: number; unitPriceCents: number }[];
 };
 
@@ -70,6 +72,8 @@ export async function chargeCard(input: ChargeInput): Promise<ChargeResult> {
   if (!creds) return { ok: false, error: "Payments are not configured yet.", code: "NOT_CONFIGURED" };
 
   const [firstName, ...rest] = input.address.fullName.trim().split(/\s+/);
+  const billing = input.billingAddress ?? input.address;
+  const [billFirst, ...billRest] = billing.fullName.trim().split(/\s+/);
   const body = {
     createTransactionRequest: {
       merchantAuthentication: { name: creds.name, transactionKey: creds.transactionKey },
@@ -92,14 +96,14 @@ export async function chargeCard(input: ChargeInput): Promise<ChargeResult> {
         },
         customer: { email: input.email },
         billTo: {
-          firstName: (firstName ?? "").slice(0, 50),
-          lastName: (rest.join(" ") || "-").slice(0, 50),
-          address: input.address.line1.slice(0, 60),
-          city: input.address.city.slice(0, 40),
-          state: input.address.province,
-          zip: input.address.postalCode.slice(0, 20),
+          firstName: (billFirst ?? "").slice(0, 50),
+          lastName: (billRest.join(" ") || "-").slice(0, 50),
+          address: billing.line1.slice(0, 60),
+          city: billing.city.slice(0, 40),
+          state: billing.province,
+          zip: billing.postalCode.slice(0, 20),
           country: "CA",
-          ...(input.address.phone ? { phoneNumber: input.address.phone.slice(0, 25) } : {}),
+          ...(billing.phone ? { phoneNumber: billing.phone.slice(0, 25) } : {}),
         },
         shipTo: {
           firstName: (firstName ?? "").slice(0, 50),

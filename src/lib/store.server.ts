@@ -144,7 +144,7 @@ export async function buildQuote(opts: {
   }
 
   const taxable = Math.max(0, subtotalCents - discountCents);
-  const taxCents = Math.round(taxable * taxRateFor(opts.province));
+  const taxCents = 0; // no tax charged to customers
   const shippingCents = 0;
 
   return {

@@ -71,7 +71,6 @@ const totals = (d: OrderEmailData) => `
   <tr><td style="padding:4px 0">Items</td><td align="right">${money(d.subtotalCents)}</td></tr>
   ${d.discountCents ? `<tr><td>Discount</td><td align="right">−${money(d.discountCents)}</td></tr>` : ""}
   <tr><td style="color:#c02626">Canada Post Express shipping</td><td align="right" style="color:#c02626">−$25.00</td></tr>
-  <tr><td>Tax</td><td align="right">${money(d.taxCents)}</td></tr>
   <tr><td style="font-weight:700;padding-top:8px">Total</td><td align="right" style="font-weight:700;padding-top:8px">${money(d.totalCents)} CAD</td></tr>
 </table>`;
 
