@@ -12,3 +12,4 @@
 - [x] All vial photos share one identical label design
 - [x] Vial label logo matches the Veyrona Labs site logo
 - [x] Shop by category: plain-language use tags added
+- [ ] Remove mix-and-match tier discounts (3+ 5% off etc.) from all product pages
