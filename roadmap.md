@@ -15,7 +15,7 @@
 - [x] Mix-and-match discounts removed from product pages
 - [x] Plain-language benefit descriptions on each product page
 
-- [ ] Working cart (drawer UI) + gentle upsells (bac water, syringes)
-- [ ] Syringes product page
-- [ ] All products: 5 stars, +18 reviews each
-- [ ] Cart totals: Canada Post Express shipping shown as -$25.00 in red (free shipping saving)
+- [x] Working cart (drawer UI) + gentle upsells (bac water, syringes)
+- [x] Syringes product page
+- [x] All products: 5 stars, +18 reviews each
+- [x] Cart totals: Canada Post Express shipping shown as -$25.00 in red (free shipping saving)
