@@ -246,9 +246,13 @@ export function CartDrawer() {
               <Check className="h-3.5 w-3.5 text-primary" /> Use code LABS for 30% off at checkout
             </p>
 
-            <button className="mt-4 w-full rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90">
+            <Link
+              to="/checkout"
+              onClick={() => setOpen(false)}
+              className="mt-4 block w-full rounded-md bg-primary px-6 py-3 text-center text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
               Checkout
-            </button>
+            </Link>
             <button
               type="button"
               onClick={() => setOpen(false)}
