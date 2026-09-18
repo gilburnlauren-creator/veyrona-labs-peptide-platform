@@ -9,6 +9,6 @@
 - [x] Email signup section on the home page
 - [ ] Waiting on the real product list and prices from the user
 
-- [ ] All vial photos share one identical label design; only peptide name/strength differ
-- [ ] Vial label logo must match the Veyrona Labs site logo exactly
-- [ ] Shop by category: add plain-language use tags in brackets (e.g. weight loss, beauty)
+- [x] All vial photos share one identical label design
+- [x] Vial label logo matches the Veyrona Labs site logo
+- [x] Shop by category: plain-language use tags added
