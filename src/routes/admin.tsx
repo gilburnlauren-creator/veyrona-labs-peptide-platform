@@ -242,10 +242,24 @@ function OrdersTab() {
                 <td className="px-4 py-3">
                   <span className="rounded-full bg-surface px-2 py-0.5 text-xs">{o.status}</span>
                   <div className="text-xs text-muted-foreground">{o.payment_status}</div>
+                  <div className="text-xs font-medium text-primary">
+                    {o.payment_method === "etransfer" ? "e-Transfer" : "Card"}
+                  </div>
                 </td>
                 <td className="px-4 py-3">{money(o.total_cents)}</td>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap items-center gap-2">
+                    {o.payment_method === "etransfer" && o.payment_status !== "captured" && (
+                      <button
+                        className={ghost}
+                        onClick={async () => {
+                          await markPaid({ data: { id: o.id } });
+                          await load();
+                        }}
+                      >
+                        Mark e-Transfer received
+                      </button>
+                    )}
                     <input
                       className={`${input} w-36`}
                       placeholder={o.tracking_number ?? "Tracking #"}
