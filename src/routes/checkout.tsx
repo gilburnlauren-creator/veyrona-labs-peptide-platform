@@ -330,6 +330,56 @@ function CheckoutPage() {
                         <input id="cardCode" autoComplete="cc-csc" required value={cardCode} onChange={(e) => setCardCode(e.target.value)} className={`${field} mt-1.5`} placeholder="123" />
                       </div>
                     </div>
+
+                    <div className="mt-6 rounded-lg border border-border p-4">
+                      <p className="text-sm font-semibold">Billing address</p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        Use the address on your card statement — matching addresses help your bank approve the payment.
+                      </p>
+                      <div className="mt-3 flex flex-col gap-2">
+                        <label className="flex cursor-pointer items-center gap-2 text-sm">
+                          <input type="radio" name="billingSame" checked={billingSame} onChange={() => setBillingSame(true)} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                          <span>Billing address is the same as shipping</span>
+                        </label>
+                        <label className="flex cursor-pointer items-center gap-2 text-sm">
+                          <input type="radio" name="billingSame" checked={!billingSame} onChange={() => setBillingSame(false)} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                          <span>Use a different billing address</span>
+                        </label>
+                      </div>
+
+                      {!billingSame && (
+                        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                          <div className="sm:col-span-2">
+                            <label className={label} htmlFor="bFullName">Name on card</label>
+                            <input id="bFullName" value={bFullName} onChange={(e) => setBFullName(e.target.value)} className={`${field} mt-1.5`} />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <label className={label} htmlFor="bLine1">Billing address</label>
+                            <input id="bLine1" value={bLine1} onChange={(e) => setBLine1(e.target.value)} className={`${field} mt-1.5`} />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <label className={label} htmlFor="bLine2">Apartment, unit (optional)</label>
+                            <input id="bLine2" value={bLine2} onChange={(e) => setBLine2(e.target.value)} className={`${field} mt-1.5`} />
+                          </div>
+                          <div>
+                            <label className={label} htmlFor="bCity">City</label>
+                            <input id="bCity" value={bCity} onChange={(e) => setBCity(e.target.value)} className={`${field} mt-1.5`} />
+                          </div>
+                          <div>
+                            <label className={label} htmlFor="bProvince">Province</label>
+                            <select id="bProvince" value={bProvince} onChange={(e) => setBProvince(e.target.value)} className={`${field} mt-1.5`}>
+                              {PROVINCES.map((p) => (
+                                <option key={p.code} value={p.code}>{p.name}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div>
+                            <label className={label} htmlFor="bPostalCode">Postal code</label>
+                            <input id="bPostalCode" value={bPostalCode} onChange={(e) => setBPostalCode(e.target.value.toUpperCase())} className={`${field} mt-1.5`} placeholder="M5V 2T6" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </>
                 ) : (
                   <div className="mt-5 rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm">
