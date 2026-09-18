@@ -53,6 +53,14 @@ function CheckoutPage() {
   const [postalCode, setPostalCode] = useState("");
   const [phone, setPhone] = useState("");
 
+  const [billingSame, setBillingSame] = useState(true);
+  const [bFullName, setBFullName] = useState("");
+  const [bLine1, setBLine1] = useState("");
+  const [bLine2, setBLine2] = useState("");
+  const [bCity, setBCity] = useState("");
+  const [bProvince, setBProvince] = useState("ON");
+  const [bPostalCode, setBPostalCode] = useState("");
+
   const [couponInput, setCouponInput] = useState("LABS");
   const [appliedCoupon, setAppliedCoupon] = useState("LABS");
 
@@ -90,7 +98,6 @@ function CheckoutPage() {
 
   const subtotalCents = quote?.subtotalCents ?? Math.round(subtotal * 100);
   const discountCents = quote?.discountCents ?? 0;
-  const taxCents = quote?.taxCents ?? 0;
   const totalCents = quote?.totalCents ?? subtotalCents;
 
   async function onSubmit(e: React.FormEvent) {
