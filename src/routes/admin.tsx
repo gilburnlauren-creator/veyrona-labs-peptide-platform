@@ -164,6 +164,7 @@ function AdminPage() {
 function OrdersTab() {
   const overview = useServerFn(adminOverview);
   const markShipped = useServerFn(adminMarkShipped);
+  const markPaid = useServerFn(adminMarkPaid);
   const refund = useServerFn(adminRefund);
 
   const [status, setStatus] = useState("all");
