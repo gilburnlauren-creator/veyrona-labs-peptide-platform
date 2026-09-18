@@ -14,7 +14,9 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CoasRouteImport } from './routes/coas'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as OrderNumberRouteImport } from './routes/order.$number'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as ApiPublicAuthorizeNetWebhookRouteImport } from './routes/api/public/authorize-net.webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,11 +43,22 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderNumberRoute = OrderNumberRouteImport.update({
+  id: '/order/$number',
+  path: '/order/$number',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicAuthorizeNetWebhookRoute =
+  ApiPublicAuthorizeNetWebhookRouteImport.update({
+    id: '/api/public/authorize-net/webhook',
+    path: '/api/public/authorize-net/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,7 +66,9 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/coas': typeof CoasRoute
   '/shop': typeof ShopRoute
+  '/order/$number': typeof OrderNumberRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/api/public/authorize-net/webhook': typeof ApiPublicAuthorizeNetWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +76,9 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/coas': typeof CoasRoute
   '/shop': typeof ShopRoute
+  '/order/$number': typeof OrderNumberRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/api/public/authorize-net/webhook': typeof ApiPublicAuthorizeNetWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,14 +87,31 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/coas': typeof CoasRoute
   '/shop': typeof ShopRoute
+  '/order/$number': typeof OrderNumberRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/api/public/authorize-net/webhook': typeof ApiPublicAuthorizeNetWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/checkout' | '/coas' | '/shop' | '/products/$slug'
+    | '/'
+    | '/about'
+    | '/checkout'
+    | '/coas'
+    | '/shop'
+    | '/order/$number'
+    | '/products/$slug'
+    | '/api/public/authorize-net/webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/checkout' | '/coas' | '/shop' | '/products/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/checkout'
+    | '/coas'
+    | '/shop'
+    | '/order/$number'
+    | '/products/$slug'
+    | '/api/public/authorize-net/webhook'
   id:
     | '__root__'
     | '/'
@@ -85,7 +119,9 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/coas'
     | '/shop'
+    | '/order/$number'
     | '/products/$slug'
+    | '/api/public/authorize-net/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,7 +130,9 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   CoasRoute: typeof CoasRoute
   ShopRoute: typeof ShopRoute
+  OrderNumberRoute: typeof OrderNumberRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  ApiPublicAuthorizeNetWebhookRoute: typeof ApiPublicAuthorizeNetWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -134,11 +172,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/order/$number': {
+      id: '/order/$number'
+      path: '/order/$number'
+      fullPath: '/order/$number'
+      preLoaderRoute: typeof OrderNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/authorize-net/webhook': {
+      id: '/api/public/authorize-net/webhook'
+      path: '/api/public/authorize-net/webhook'
+      fullPath: '/api/public/authorize-net/webhook'
+      preLoaderRoute: typeof ApiPublicAuthorizeNetWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -150,7 +202,9 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   CoasRoute: CoasRoute,
   ShopRoute: ShopRoute,
+  OrderNumberRoute: OrderNumberRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  ApiPublicAuthorizeNetWebhookRoute: ApiPublicAuthorizeNetWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
