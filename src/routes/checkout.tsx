@@ -377,7 +377,7 @@ function CheckoutPage() {
                   <span className="flex items-center gap-1.5"><Truck className="h-3.5 w-3.5" /> Canada Post Express shipping</span>
                   <span className="font-semibold">−$25.00</span>
                 </div>
-                <div className="flex justify-between"><span className="text-muted-foreground">Tax</span><span>{money(taxCents)}</span></div>
+                <div className="flex justify-between"><span className="text-muted-foreground">Tax</span><span>No tax charged</span></div>
                 <div className="mt-2 flex items-center justify-between border-t border-border pt-3">
                   <span className="text-muted-foreground">Total</span>
                   <span className="font-display text-xl font-semibold">{money(totalCents)} CAD</span>

@@ -95,6 +95,7 @@ export const placeOrder = createServerFn({ method: "POST" })
         email: data.email,
         invoiceNumber,
         address: data.address,
+        billingAddress: data.billingAddress,
         lineItems: quote.lines.map((l) => ({
           name: `${l.name} ${l.size}`,
           quantity: l.quantity,
