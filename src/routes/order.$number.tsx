@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Check, Loader2, Package, Truck } from "lucide-react";
+import { Banknote, Check, Loader2, Package, Truck } from "lucide-react";
 
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { lookupOrder } from "@/lib/store.functions";
+import { ETRANSFER_EMAIL, ETRANSFER_SECURITY_ANSWER } from "@/lib/etransfer";
 import { money } from "@/lib/tax";
 
 type OrderSearch = { email?: string | undefined };
@@ -108,6 +109,38 @@ function OrderPage() {
           </p>
         )}
 
+        {data?.order.payment_method === "etransfer" && data.order.payment_status !== "captured" && (
+          <div className="mt-8 rounded-lg border border-primary/40 bg-primary/5 p-6">
+            <h2 className="flex items-center gap-2 font-display text-lg font-semibold">
+              <Banknote className="h-5 w-5 text-primary" /> Send your Interac e-Transfer
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Your order is reserved. We ship free with Canada Post Express as soon as the transfer arrives.
+            </p>
+            <dl className="mt-4 space-y-2 text-sm">
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted-foreground">Send to</dt>
+                <dd className="font-semibold">{ETRANSFER_EMAIL}</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted-foreground">Amount</dt>
+                <dd className="font-semibold">{money(data.order.total_cents)} CAD</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted-foreground">Message / reference</dt>
+                <dd className="font-semibold">{data.order.order_number}</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-muted-foreground">Security answer (if asked)</dt>
+                <dd className="font-semibold">{ETRANSFER_SECURITY_ANSWER}</dd>
+              </div>
+            </dl>
+            <p className="mt-4 inline-flex rounded-full bg-background px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+              Awaiting payment
+            </p>
+          </div>
+        )}
+
         {data && (
           <div className="mt-8 rounded-lg border border-border p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -118,6 +151,7 @@ function OrderPage() {
                 Placed {new Date(data.order.created_at).toLocaleDateString("en-CA")}
               </span>
             </div>
+
 
             <ul className="mt-5 space-y-2 text-sm">
               {data.items.map((i) => (
