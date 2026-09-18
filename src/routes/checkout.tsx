@@ -122,6 +122,11 @@ function CheckoutPage() {
         return;
       }
 
+      if (!billingSame && (!bFullName || !bLine1 || !bCity || !bPostalCode)) {
+        setError("Please fill in the billing address that appears on your card statement.");
+        return;
+      }
+
       setSubmitting(true);
       try {
         opaqueData = await tokenizeCard({
@@ -129,8 +134,8 @@ function CheckoutPage() {
           month: mm,
           year: yy,
           cardCode,
-          zip: postalCode,
-          fullName,
+          zip: billingSame ? postalCode : bPostalCode,
+          fullName: billingSame ? fullName : bFullName,
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : "We couldn't read those card details.");
@@ -140,6 +145,19 @@ function CheckoutPage() {
     } else {
       setSubmitting(true);
     }
+
+    const billingAddress =
+      paymentMethod === "card" && !billingSame
+        ? {
+            fullName: bFullName,
+            line1: bLine1,
+            ...(bLine2 ? { line2: bLine2 } : {}),
+            city: bCity,
+            province: bProvince,
+            postalCode: bPostalCode,
+            country: "CA" as const,
+          }
+        : undefined;
 
     try {
       const result = await placeFn({
@@ -155,6 +173,7 @@ function CheckoutPage() {
             country: "CA" as const,
             ...(phone ? { phone } : {}),
           },
+          ...(billingAddress ? { billingAddress } : {}),
           items,
           couponCode: appliedCoupon || null,
           idempotencyKey,
