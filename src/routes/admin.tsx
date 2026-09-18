@@ -10,6 +10,7 @@ import {
   adminLogout,
   adminOverview,
   adminMarkShipped,
+  adminMarkPaid,
   adminRefund,
   adminProducts,
   adminUpdateVariant,
