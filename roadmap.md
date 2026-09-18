@@ -10,3 +10,4 @@
 - [ ] Waiting on the real product list and prices from the user
 
 - [ ] All vial photos share one identical label design; only peptide name/strength differ
+- [ ] Vial label logo must match the Veyrona Labs site logo exactly
