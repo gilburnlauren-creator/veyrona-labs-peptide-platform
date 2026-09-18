@@ -58,6 +58,8 @@ export type ChargeInput = {
   email: string;
   invoiceNumber: string;
   address: ShippingAddress;
+  /** Billing address as it appears on the card; defaults to the shipping address. */
+  billingAddress?: ShippingAddress | undefined;
   lineItems: { name: string; quantity: number; unitPriceCents: number }[];
 };
 

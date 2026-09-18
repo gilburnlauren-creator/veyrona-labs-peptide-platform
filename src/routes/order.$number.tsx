@@ -171,7 +171,6 @@ function OrderPage() {
                 <span className="flex items-center gap-1.5"><Truck className="h-3.5 w-3.5" /> Canada Post Express shipping</span>
                 <span className="font-semibold">−$25.00</span>
               </div>
-              <div className="flex justify-between"><span className="text-muted-foreground">Tax</span><span>{money(data.order.tax_cents)}</span></div>
               <div className="flex justify-between border-t border-border pt-3 font-semibold">
                 <span>Total</span><span className="font-display text-lg">{money(data.order.total_cents)} CAD</span>
               </div>
