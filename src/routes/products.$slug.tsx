@@ -14,6 +14,7 @@ import { vialImage } from "@/data/vial-images";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
 import { getProduct, products } from "@/data/products";
+import { useCart } from "@/components/cart";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -63,6 +64,10 @@ function ProductPage() {
   const { product } = Route.useLoaderData();
   const d = product.detail;
   const [selected, setSelected] = useState(product.sizes[0]!);
+  const { add, lines } = useCart();
+  const addOns = products.filter(
+    (p) => ["bac-water", "syringes"].includes(p.slug) && p.slug !== product.slug && !lines.some((l) => l.slug === p.slug),
+  );
   const related = products.filter((p) => p.category === product.category && p.slug !== product.slug).slice(0, 4);
 
   useEffect(() => {
@@ -117,9 +122,46 @@ function ProductPage() {
               ))}
             </select>
 
-            <button className="mt-6 w-full rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto sm:px-10">
+            <button
+              type="button"
+              onClick={() =>
+                add({ slug: product.slug, name: product.name, size: selected.label, price: selected.price })
+              }
+              className="mt-6 w-full rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto sm:px-10"
+            >
               Add {selected.label} to cart
             </button>
+
+            {addOns.length > 0 && (
+              <div className="mt-6 rounded-lg border border-border bg-card p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Complete your bench setup
+                </p>
+                <div className="mt-3 space-y-2">
+                  {addOns.map((a) => {
+                    const size = a.sizes[0]!;
+                    return (
+                      <div key={a.slug} className="flex items-center gap-3">
+                        <img src={vialImage(a.slug)} alt="" width={816} height={816} loading="lazy" className="h-11 w-11 rounded object-contain" />
+                        <div className="min-w-0 flex-1">
+                          <Link to="/products/$slug" params={{ slug: a.slug }} className="block truncate text-sm font-medium hover:text-primary">
+                            {a.name}
+                          </Link>
+                          <p className="text-xs text-muted-foreground">{size.label} · ${size.price.toFixed(2)}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => add({ slug: a.slug, name: a.name, size: size.label, price: size.price })}
+                          className="rounded-md border border-primary px-2.5 py-1 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                        >
+                          Add
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             <div className="mt-6 rounded-lg border border-primary/40 bg-primary/5 p-4">
               <p className="text-sm font-semibold text-primary">Use code LABS for 30% off your order</p>

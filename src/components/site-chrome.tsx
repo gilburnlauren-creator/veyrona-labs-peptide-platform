@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Check, Truck, Tag, Leaf } from "lucide-react";
 import logo from "@/assets/veyrona-logo.png";
+import { CartButton } from "@/components/cart";
 
 const nav = [
   { to: "/shop", label: "Shop" },
@@ -44,12 +45,15 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link
-          to="/shop"
-          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-        >
-          Shop Peptides
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/shop"
+            className="hidden rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 sm:inline-block"
+          >
+            Shop Peptides
+          </Link>
+          <CartButton />
+        </div>
       </div>
     </header>
   );

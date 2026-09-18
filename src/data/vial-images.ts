@@ -12,6 +12,7 @@ import tb500 from "@/assets/vials/tb-500.jpg";
 import semax from "@/assets/vials/semax.jpg";
 import selank from "@/assets/vials/selank.jpg";
 import bacWater from "@/assets/vials/bac-water.jpg";
+import syringes from "@/assets/vials/syringes.jpg";
 
 const images: Record<string, string> = {
   retatrutide,
@@ -27,6 +28,7 @@ const images: Record<string, string> = {
   semax,
   selank,
   "bac-water": bacWater,
+  syringes,
 };
 
 export const vialImage = (slug: string) => images[slug] ?? fallback;
