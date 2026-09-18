@@ -179,6 +179,9 @@ function ProductPage() {
           <div className="grid gap-10 md:grid-cols-[2fr_1fr]">
             <div>
               <h2 className="font-display text-2xl font-semibold">About {product.name}</h2>
+              {d.overview && (
+                <p className="mt-4 text-sm leading-relaxed text-foreground">{d.overview}</p>
+              )}
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{d.summary}</p>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 Supplied by Veyrona Labs as a lyophilised powder for in-vitro laboratory research use.
