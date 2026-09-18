@@ -11,3 +11,4 @@
 
 - [ ] All vial photos share one identical label design; only peptide name/strength differ
 - [ ] Vial label logo must match the Veyrona Labs site logo exactly
+- [ ] Shop by category: add plain-language use tags in brackets (e.g. weight loss, beauty)
