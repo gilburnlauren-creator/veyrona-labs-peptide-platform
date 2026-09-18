@@ -37,7 +37,7 @@ function About() {
             "Made in Canada",
             "Third-party lab tested",
             "Free shipping on all orders with Canada Post Express",
-            "Use code LABS for 30% off",
+            "Use code LABS for 15% off",
           ].map((t) => (
             <li key={t} className="flex items-center gap-2">
               <Check className="h-4 w-4 shrink-0 text-primary" /> {t}

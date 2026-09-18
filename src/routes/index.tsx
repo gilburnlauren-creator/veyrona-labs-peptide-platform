@@ -44,7 +44,7 @@ const faqs = [
   },
   {
     q: "Do you have a discount code?",
-    a: "Yes — enter code LABS at checkout for 30% off your entire order. It works on every research compound we stock.",
+    a: "Yes — enter code LABS at checkout for 15% off your entire order. It works on every research compound we stock.",
   },
   {
     q: "How fast do orders ship in Canada?",
@@ -68,7 +68,7 @@ function EmailSignup() {
     <section className="border-y border-border bg-ink text-ink-foreground">
       <div className="container-page grid gap-8 py-14 md:grid-cols-2 md:items-center">
         <div>
-          <h2 className="font-display text-2xl font-semibold">Get 30% off with code LABS</h2>
+          <h2 className="font-display text-2xl font-semibold">Get 15% off with code LABS</h2>
           <p className="mt-3 max-w-md text-sm opacity-75">
             Join the Veyrona Labs list for new batch releases, certificate uploads and restock
             alerts. Free Canada Post Express shipping on every order.

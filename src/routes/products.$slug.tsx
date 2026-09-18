@@ -164,7 +164,7 @@ function ProductPage() {
             )}
 
             <div className="mt-6 rounded-lg border border-primary/40 bg-primary/5 p-4">
-              <p className="text-sm font-semibold text-primary">Use code LABS for 30% off your order</p>
+              <p className="text-sm font-semibold text-primary">Use code LABS for 15% off your order</p>
               <p className="mt-1 text-xs text-muted-foreground">
                 Applies to every research compound — enter LABS at checkout.
               </p>

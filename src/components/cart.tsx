@@ -243,7 +243,7 @@ export function CartDrawer() {
               <span className="font-display text-lg font-semibold">${subtotal.toFixed(2)} CAD</span>
             </div>
             <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Check className="h-3.5 w-3.5 text-primary" /> Use code LABS for 30% off at checkout
+              <Check className="h-3.5 w-3.5 text-primary" /> Use code LABS for 15% off at checkout
             </p>
 
             <Link
