@@ -48,7 +48,7 @@ const seed: Seed[] = [
     category: "Metabolic",
     badge: "Best Seller",
     rating: 5,
-    reviews: 18,
+    reviews: 293,
     detail: {
       cas: "2381089-83-2",
       overview: "Retatrutide is one of the most sought-after peptides in weight loss and weight management research. Researchers study it for its effects on metabolism, appetite regulation and fat reduction, and it is currently among the most talked-about compounds in obesity and metabolic research.",
