@@ -141,7 +141,13 @@ export const placeOrder = createServerFn({ method: "POST" })
       await store.logEmail(orderId, data.email, `Order ${orderNumber}`, "confirmation", "failed", String(err));
     }
 
-    return { ok: true, orderNumber, totalCents: quote.totalCents, email: data.email };
+    return {
+      ok: true,
+      orderNumber,
+      totalCents: quote.totalCents,
+      email: data.email,
+      paymentMethod: data.paymentMethod,
+    };
   });
 
 export const lookupOrder = createServerFn({ method: "POST" })
@@ -155,11 +161,12 @@ export const lookupOrder = createServerFn({ method: "POST" })
     const rows = await sql<
       {
         id: number; order_number: string; status: string; payment_status: string;
+        payment_method: string;
         subtotal_cents: number; discount_cents: number; tax_cents: number; total_cents: number;
         coupon_code: string | null; tracking_number: string | null;
         shipping_address: Record<string, string>; created_at: string;
       }[]
-    >`SELECT id, order_number, status, payment_status, subtotal_cents, discount_cents, tax_cents,
+    >`SELECT id, order_number, status, payment_status, payment_method, subtotal_cents, discount_cents, tax_cents,
              total_cents, coupon_code, tracking_number, shipping_address, created_at
       FROM orders
       WHERE upper(order_number) = ${data.orderNumber.trim().toUpperCase()}

@@ -77,6 +77,8 @@ export const orders = pgTable(
     // pending | paid | failed | cancelled | shipped | refunded
     status: text("status").notNull().default("pending"),
     paymentStatus: text("payment_status").notNull().default("pending"),
+    // card | etransfer
+    paymentMethod: text("payment_method").notNull().default("card"),
     transactionId: text("transaction_id"),
     authCode: text("auth_code"),
     avsResult: text("avs_result"),
