@@ -10,7 +10,7 @@ import {
   Snowflake,
   FileText,
 } from "lucide-react";
-import vial from "@/assets/vial.jpg";
+import { vialImage } from "@/data/vial-images";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
 import { getProduct, products } from "@/data/products";
