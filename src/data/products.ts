@@ -51,6 +51,7 @@ const seed: Seed[] = [
     reviews: 18,
     detail: {
       cas: "2381089-83-2",
+      overview: "Retatrutide is one of the most sought-after peptides in weight loss and weight management research. Researchers study it for its effects on metabolism, appetite regulation and fat reduction, and it is currently among the most talked-about compounds in obesity and metabolic research.",
       aka: "LY3437943; GGG tri-agonist",
       className: "Synthetic triple receptor agonist / metabolic research tool",
       molecularWeight: "~4731 Da",
@@ -79,6 +80,7 @@ const seed: Seed[] = [
     reviews: 12,
     detail: {
       cas: "137525-51-0",
+      overview: "BPC-157 is one of the most popular peptides in healing and recovery research. Researchers study it for tissue repair, tendon and ligament recovery, gut health and inflammation, making it a go-to compound in injury and regenerative research.",
       aka: "Body Protection Compound 157; PL 14736",
       className: "Synthetic pentadecapeptide / tissue repair research tool",
       molecularWeight: "~1419.5 Da",
@@ -106,6 +108,7 @@ const seed: Seed[] = [
     reviews: 7,
     detail: {
       cas: "67727-97-3",
+      overview: "KPV is widely studied in inflammation and gut health research. Researchers explore it for calming inflammatory responses, supporting gut and skin health, and immune system regulation.",
       aka: "Lys-Pro-Val; α-MSH (11-13)",
       className: "Synthetic tripeptide / inflammatory signalling research tool",
       molecularWeight: "~342.4 Da",
@@ -133,6 +136,7 @@ const seed: Seed[] = [
     reviews: 9,
     detail: {
       cas: "89030-95-5",
+      overview: "GHK-Cu is the leading beauty peptide. It is heavily researched for skin rejuvenation, collagen production, wrinkle reduction, skin firmness and hair growth — a favourite in anti-aging, beauty and cosmetic research.",
       aka: "Copper tripeptide-1; Gly-His-Lys copper complex",
       className: "Copper-binding tripeptide / matrix remodelling research tool",
       molecularWeight: "~403.9 Da",
