@@ -9,7 +9,11 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "db:migrate": "bun run scripts/migrate.ts",
+    "db:seed": "bun run scripts/seed.ts",
+    "db:generate": "drizzle-kit generate",
+    "start": "node .output/server/index.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1"
