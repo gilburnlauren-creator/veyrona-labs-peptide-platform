@@ -271,6 +271,7 @@ const seed: Seed[] = [
     reviews: 3,
     detail: {
       cas: "218949-48-5",
+      overview: "Tesamorelin is a GHRH analogue researched for reducing abdominal and visceral fat, growth hormone release, body composition and anti-aging. It is one of the most studied peptides in fat-reduction research.",
       aka: "TH9507; trans-3-hexenoyl-GRF (1-44)",
       className: "GHRH analogue / secretagogue research tool",
       molecularWeight: "~5135.9 Da",
@@ -297,6 +298,7 @@ const seed: Seed[] = [
     reviews: 4,
     detail: {
       cas: "77591-33-4",
+      overview: "TB-500 is a healing and recovery peptide researched for tissue repair, wound healing, flexibility, muscle recovery and reduced inflammation — a staple in injury and regenerative research.",
       aka: "Thymosin beta-4 fragment (Ac-SDKP extended)",
       className: "Actin-binding peptide / cell motility research tool",
       molecularWeight: "~4963 Da",
@@ -323,6 +325,7 @@ const seed: Seed[] = [
     reviews: 2,
     detail: {
       cas: "80714-61-0",
+      overview: "Semax is a nootropic peptide studied for focus, memory, mental clarity, mood and cognitive performance. Researchers also explore it for neuroprotection and brain health.",
       aka: "ACTH (4-10) Pro-Gly-Pro analogue",
       className: "Synthetic heptapeptide / neuroscience research tool",
       molecularWeight: "~813.9 Da",
@@ -349,6 +352,7 @@ const seed: Seed[] = [
     reviews: 2,
     detail: {
       cas: "129954-34-3",
+      overview: "Selank is a nootropic and calming peptide researched for anxiety relief, stress reduction, mood balance, focus and immune support — often studied alongside Semax in cognitive research.",
       aka: "Tuftsin analogue Thr-Lys-Pro-Arg-Pro-Gly-Pro",
       className: "Synthetic heptapeptide / neuroscience research tool",
       molecularWeight: "~751.9 Da",
@@ -375,6 +379,7 @@ const seed: Seed[] = [
     reviews: 11,
     detail: {
       cas: "7732-18-5 (water)",
+      overview: "Bacteriostatic Water is the standard diluent used to reconstitute lyophilised research peptides. The benzyl alcohol preservative keeps the vial sterile across multiple draws, making it an essential companion to every peptide order.",
       aka: "0.9% benzyl alcohol preserved sterile water",
       className: "Laboratory diluent",
       molecularWeight: "18.02 Da (water)",
