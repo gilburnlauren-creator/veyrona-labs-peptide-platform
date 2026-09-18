@@ -128,14 +128,6 @@ function ProductPage() {
               </p>
             </div>
 
-            <div className="mt-4 rounded-lg border border-border bg-card p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-primary">Mix & match all peptides</p>
-              <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted-foreground">
-                <span><strong className="text-foreground">3+</strong> · 5% off</span>
-                <span><strong className="text-foreground">5+</strong> · 10% off</span>
-                <span><strong className="text-foreground">10+</strong> · 20% off</span>
-              </div>
-            </div>
 
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex gap-3"><Truck className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><span><strong>Free shipping on all orders with Canada Post Express.</strong> Placed before 2PM ET? It ships the same business day, tracked and discreetly packaged.</span></li>
@@ -187,6 +179,9 @@ function ProductPage() {
           <div className="grid gap-10 md:grid-cols-[2fr_1fr]">
             <div>
               <h2 className="font-display text-2xl font-semibold">About {product.name}</h2>
+              {d.overview && (
+                <p className="mt-4 text-sm leading-relaxed text-foreground">{d.overview}</p>
+              )}
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{d.summary}</p>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 Supplied by Veyrona Labs as a lyophilised powder for in-vitro laboratory research use.

@@ -10,6 +10,7 @@ export type ProductDetail = {
   tested: string;
   purity: string;
   summary: string;
+  overview?: string;
   research: { title: string; body: string }[];
   tags: string[];
   storage: string;
@@ -47,9 +48,10 @@ const seed: Seed[] = [
     category: "Metabolic",
     badge: "Best Seller",
     rating: 5,
-    reviews: 18,
+    reviews: 293,
     detail: {
       cas: "2381089-83-2",
+      overview: "Retatrutide is one of the most sought-after peptides in weight loss and weight management research. Researchers study it for its effects on metabolism, appetite regulation and fat reduction, and it is currently among the most talked-about compounds in obesity and metabolic research.",
       aka: "LY3437943; GGG tri-agonist",
       className: "Synthetic triple receptor agonist / metabolic research tool",
       molecularWeight: "~4731 Da",
@@ -78,6 +80,7 @@ const seed: Seed[] = [
     reviews: 12,
     detail: {
       cas: "137525-51-0",
+      overview: "BPC-157 is one of the most popular peptides in healing and recovery research. Researchers study it for tissue repair, tendon and ligament recovery, gut health and inflammation, making it a go-to compound in injury and regenerative research.",
       aka: "Body Protection Compound 157; PL 14736",
       className: "Synthetic pentadecapeptide / tissue repair research tool",
       molecularWeight: "~1419.5 Da",
@@ -105,6 +108,7 @@ const seed: Seed[] = [
     reviews: 7,
     detail: {
       cas: "67727-97-3",
+      overview: "KPV is widely studied in inflammation and gut health research. Researchers explore it for calming inflammatory responses, supporting gut and skin health, and immune system regulation.",
       aka: "Lys-Pro-Val; α-MSH (11-13)",
       className: "Synthetic tripeptide / inflammatory signalling research tool",
       molecularWeight: "~342.4 Da",
@@ -132,6 +136,7 @@ const seed: Seed[] = [
     reviews: 9,
     detail: {
       cas: "89030-95-5",
+      overview: "GHK-Cu is the leading beauty peptide. It is heavily researched for skin rejuvenation, collagen production, wrinkle reduction, skin firmness and hair growth — a favourite in anti-aging, beauty and cosmetic research.",
       aka: "Copper tripeptide-1; Gly-His-Lys copper complex",
       className: "Copper-binding tripeptide / matrix remodelling research tool",
       molecularWeight: "~403.9 Da",
@@ -159,6 +164,7 @@ const seed: Seed[] = [
     detail: {
       cas: "Blend — see components",
       aka: "GHK-Cu + BPC-157 + TB-500 combination vial",
+      overview: "The GLOW Blend is the beauty and rejuvenation stack. Combining GHK-Cu, BPC-157 and TB-500, it is researched for glowing skin, collagen support, hair health, tissue repair and full-body recovery — all in one vial.",
       className: "Multi-peptide research blend",
       molecularWeight: "Mixed",
       sequenceLength: "Mixed",
@@ -184,6 +190,7 @@ const seed: Seed[] = [
     reviews: 6,
     detail: {
       cas: "1627580-64-6",
+      overview: "MOTS-C is a mitochondrial peptide studied in energy, metabolism and longevity research. Researchers explore it for fat metabolism, exercise performance, cellular energy and healthy aging.",
       aka: "Mitochondrial ORF of the 12S rRNA type-c",
       className: "Mitochondrial-derived peptide / metabolic research tool",
       molecularWeight: "~2174.6 Da",
@@ -211,6 +218,7 @@ const seed: Seed[] = [
     detail: {
       cas: "Blend — see components",
       aka: "KPV + GHK-Cu + BPC-157 + TB-500 combination vial",
+      overview: "The KLOW Blend builds on the GLOW formula by adding KPV, creating a four-peptide stack researched for skin and beauty, inflammation control, gut health, tissue repair and full-body recovery.",
       className: "Multi-peptide research blend",
       molecularWeight: "Mixed",
       sequenceLength: "Mixed",
@@ -236,6 +244,7 @@ const seed: Seed[] = [
     reviews: 8,
     detail: {
       cas: "863288-34-0 / 170851-70-4",
+      overview: "CJC-1295 + Ipamorelin is the classic growth hormone secretagogue stack. Researchers study this pairing for muscle growth, fat loss, improved sleep, recovery and anti-aging through natural growth hormone release.",
       aka: "Modified GRF (1-29) + Ipamorelin",
       className: "Growth hormone secretagogue research blend",
       molecularWeight: "~3368 Da / ~711.9 Da",
@@ -262,6 +271,7 @@ const seed: Seed[] = [
     reviews: 3,
     detail: {
       cas: "218949-48-5",
+      overview: "Tesamorelin is a GHRH analogue researched for reducing abdominal and visceral fat, growth hormone release, body composition and anti-aging. It is one of the most studied peptides in fat-reduction research.",
       aka: "TH9507; trans-3-hexenoyl-GRF (1-44)",
       className: "GHRH analogue / secretagogue research tool",
       molecularWeight: "~5135.9 Da",
@@ -288,6 +298,7 @@ const seed: Seed[] = [
     reviews: 4,
     detail: {
       cas: "77591-33-4",
+      overview: "TB-500 is a healing and recovery peptide researched for tissue repair, wound healing, flexibility, muscle recovery and reduced inflammation — a staple in injury and regenerative research.",
       aka: "Thymosin beta-4 fragment (Ac-SDKP extended)",
       className: "Actin-binding peptide / cell motility research tool",
       molecularWeight: "~4963 Da",
@@ -314,6 +325,7 @@ const seed: Seed[] = [
     reviews: 2,
     detail: {
       cas: "80714-61-0",
+      overview: "Semax is a nootropic peptide studied for focus, memory, mental clarity, mood and cognitive performance. Researchers also explore it for neuroprotection and brain health.",
       aka: "ACTH (4-10) Pro-Gly-Pro analogue",
       className: "Synthetic heptapeptide / neuroscience research tool",
       molecularWeight: "~813.9 Da",
@@ -340,6 +352,7 @@ const seed: Seed[] = [
     reviews: 2,
     detail: {
       cas: "129954-34-3",
+      overview: "Selank is a nootropic and calming peptide researched for anxiety relief, stress reduction, mood balance, focus and immune support — often studied alongside Semax in cognitive research.",
       aka: "Tuftsin analogue Thr-Lys-Pro-Arg-Pro-Gly-Pro",
       className: "Synthetic heptapeptide / neuroscience research tool",
       molecularWeight: "~751.9 Da",
@@ -366,6 +379,7 @@ const seed: Seed[] = [
     reviews: 11,
     detail: {
       cas: "7732-18-5 (water)",
+      overview: "Bacteriostatic Water is the standard diluent used to reconstitute lyophilised research peptides. The benzyl alcohol preservative keeps the vial sterile across multiple draws, making it an essential companion to every peptide order.",
       aka: "0.9% benzyl alcohol preserved sterile water",
       className: "Laboratory diluent",
       molecularWeight: "18.02 Da (water)",
