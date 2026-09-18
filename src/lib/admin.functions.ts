@@ -113,6 +113,21 @@ export const adminOrderDetail = createServerFn({ method: "POST" })
     return { order: rows[0], items };
   });
 
+/** Marks an Interac e-Transfer order as paid once the transfer lands in the bank account. */
+export const adminMarkPaid = createServerFn({ method: "POST" })
+  .inputValidator((d: unknown) => z.object({ id: z.number().int().positive() }).parse(d))
+  .handler(async ({ data }) => {
+    const { requireAdmin } = await import("./admin.server");
+    await requireAdmin();
+    const { getSql } = await import("@/db/client.server");
+    const sql = getSql();
+    await sql`
+      UPDATE orders
+      SET status = 'paid', payment_status = 'captured', updated_at = now()
+      WHERE id = ${data.id} AND payment_method = 'etransfer'`;
+    return { ok: true };
+  });
+
 export const adminMarkShipped = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) =>
     z.object({ id: z.number().int().positive(), trackingNumber: z.string().min(3).max(60) }).parse(d),
