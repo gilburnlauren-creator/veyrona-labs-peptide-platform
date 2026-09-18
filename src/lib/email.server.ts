@@ -14,7 +14,7 @@ export type OrderEmailData = {
   discountCents: number;
   taxCents: number;
   totalCents: number;
-  address: { line1: string; line2?: string; city: string; province: string; postalCode: string };
+  address: { line1: string; line2?: string | undefined; city: string; province: string; postalCode: string };
 };
 
 export function emailConfigured() {

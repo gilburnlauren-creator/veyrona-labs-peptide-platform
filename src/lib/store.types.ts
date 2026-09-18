@@ -28,12 +28,12 @@ export type Quote = {
 export type ShippingAddress = {
   fullName: string;
   line1: string;
-  line2?: string;
+  line2?: string | undefined;
   city: string;
   province: string;
   postalCode: string;
   country: "CA";
-  phone?: string;
+  phone?: string | undefined;
 };
 
 export type PlaceOrderResult =

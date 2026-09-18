@@ -99,8 +99,8 @@ export function evaluateCoupon(coupon: CouponRow | null, subtotalCents: number) 
 
 export async function buildQuote(opts: {
   items: QuoteItemInput[];
-  couponCode?: string | null;
-  province?: string | null;
+  couponCode?: string | null | undefined;
+  province?: string | null | undefined;
 }): Promise<Quote> {
   const items = opts.items.filter((i) => i.qty > 0).slice(0, 50);
   let lines: QuoteLine[] = [];
