@@ -7,6 +7,7 @@ export type AdminOrderRow = {
   email: string;
   status: string;
   payment_status: string;
+  payment_method: string;
   total_cents: number;
   coupon_code: string | null;
   tracking_number: string | null;
@@ -68,13 +69,14 @@ export const adminOverview = createServerFn({ method: "POST" })
     const status = data.status && data.status !== "all" ? data.status : null;
     const orders = status
       ? await sql<AdminOrderRow[]>`
-          SELECT id, order_number, email, status, payment_status, total_cents, coupon_code,
+          SELECT id, order_number, email, status, payment_status, payment_method, total_cents, coupon_code,
                  tracking_number, created_at
           FROM orders WHERE status = ${status} ORDER BY created_at DESC LIMIT 200`
       : await sql<AdminOrderRow[]>`
-          SELECT id, order_number, email, status, payment_status, total_cents, coupon_code,
+          SELECT id, order_number, email, status, payment_status, payment_method, total_cents, coupon_code,
                  tracking_number, created_at
           FROM orders ORDER BY created_at DESC LIMIT 200`;
+
 
     const [stats] = await sql<
       { paid_orders: number; revenue_cents: number; pending_orders: number; customers: number }[]
