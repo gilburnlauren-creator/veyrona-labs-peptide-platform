@@ -204,7 +204,7 @@ export async function createPaidOrder(input: CreateOrderInput) {
         ${input.payment.transactionId}, ${input.payment.authCode}, ${input.payment.avsResult},
         ${input.idempotencyKey}, ${input.couponCode}, ${input.quote.subtotalCents},
         ${input.quote.discountCents}, ${input.quote.taxCents}, ${input.quote.shippingCents},
-        ${input.quote.totalCents}, ${tx.json(input.address as unknown as Record<string, unknown>)}
+        ${input.quote.totalCents}, ${tx.json(input.address as never)}
       ) RETURNING id`;
 
     for (const line of input.quote.lines) {
