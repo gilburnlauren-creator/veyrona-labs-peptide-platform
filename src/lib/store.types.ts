@@ -37,5 +37,11 @@ export type ShippingAddress = {
 };
 
 export type PlaceOrderResult =
-  | { ok: true; orderNumber: string; totalCents: number; email: string }
+  | {
+      ok: true;
+      orderNumber: string;
+      totalCents: number;
+      email: string;
+      paymentMethod?: "card" | "etransfer";
+    }
   | { ok: false; error: string; code?: string };

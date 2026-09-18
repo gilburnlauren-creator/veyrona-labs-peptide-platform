@@ -175,7 +175,9 @@ export type CreateOrderInput = {
   quote: Quote;
   couponCode: string | null;
   idempotencyKey: string;
-  payment: { transactionId: string; authCode: string; avsResult: string };
+  /** "card" is captured immediately; "etransfer" waits for the transfer to land. */
+  paymentMethod: "card" | "etransfer";
+  payment?: { transactionId: string; authCode: string; avsResult: string } | undefined;
 };
 
 /**
@@ -186,6 +188,9 @@ export type CreateOrderInput = {
 export async function createPaidOrder(input: CreateOrderInput) {
   const sql = getSql();
   const orderNumber = generateOrderNumber();
+  const isCard = input.paymentMethod === "card";
+  const orderStatus = isCard ? "paid" : "pending";
+  const paymentStatus = isCard ? "captured" : "awaiting_etransfer";
 
   return sql.begin(async (tx) => {
     const [customer] = await tx<{ id: number }[]>`
@@ -196,12 +201,14 @@ export async function createPaidOrder(input: CreateOrderInput) {
 
     const [order] = await tx<{ id: number }[]>`
       INSERT INTO orders (
-        order_number, customer_id, email, status, payment_status, transaction_id, auth_code,
+        order_number, customer_id, email, status, payment_status, payment_method, transaction_id, auth_code,
         avs_result, idempotency_key, coupon_code, subtotal_cents, discount_cents, tax_cents,
         shipping_cents, total_cents, shipping_address
       ) VALUES (
-        ${orderNumber}, ${customer!.id}, ${input.email.toLowerCase()}, 'paid', 'captured',
-        ${input.payment.transactionId}, ${input.payment.authCode}, ${input.payment.avsResult},
+        ${orderNumber}, ${customer!.id}, ${input.email.toLowerCase()}, ${orderStatus}, ${paymentStatus},
+        ${input.paymentMethod},
+        ${input.payment?.transactionId ?? null}, ${input.payment?.authCode ?? null},
+        ${input.payment?.avsResult ?? null},
         ${input.idempotencyKey}, ${input.couponCode}, ${input.quote.subtotalCents},
         ${input.quote.discountCents}, ${input.quote.taxCents}, ${input.quote.shippingCents},
         ${input.quote.totalCents}, ${tx.json(input.address as never)}

@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Check, Loader2, Lock, ShieldCheck, Truck } from "lucide-react";
+import { Banknote, Check, CreditCard, Loader2, Lock, ShieldCheck, Truck } from "lucide-react";
 
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { useCart } from "@/components/cart";
@@ -9,6 +9,7 @@ import { vialImage } from "@/data/vial-images";
 import { getQuote, placeOrder } from "@/lib/store.functions";
 import { PROVINCES, money } from "@/lib/tax";
 import { acceptClientKey, tokenizeCard } from "@/lib/accept-js";
+import { ETRANSFER_EMAIL, ETRANSFER_SECURITY_ANSWER, type PaymentMethod } from "@/lib/etransfer";
 import type { Quote } from "@/lib/store.types";
 
 export const Route = createFileRoute("/checkout")({
@@ -55,6 +56,7 @@ function CheckoutPage() {
   const [couponInput, setCouponInput] = useState("LABS");
   const [appliedCoupon, setAppliedCoupon] = useState("LABS");
 
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cardCode, setCardCode] = useState("");
@@ -96,30 +98,43 @@ function CheckoutPage() {
     setError(null);
 
     if (items.length === 0) return;
-    if (!acceptClientKey()) {
-      setError(
-        "Card payments aren't switched on yet. Add your Authorize.Net keys to start taking live orders.",
-      );
-      return;
+
+    let opaqueData: { dataDescriptor: string; dataValue: string } | undefined;
+
+    if (paymentMethod === "card") {
+      if (!acceptClientKey()) {
+        setError(
+          "Card payments aren't switched on yet. Choose Interac e-Transfer, or add your Authorize.Net keys to take card orders.",
+        );
+        return;
+      }
+
+      const [mm, yy] = expiry.split("/").map((s) => s.trim());
+      if (!mm || !yy) {
+        setError("Enter the card expiry as MM/YY.");
+        return;
+      }
+
+      setSubmitting(true);
+      try {
+        opaqueData = await tokenizeCard({
+          cardNumber,
+          month: mm,
+          year: yy,
+          cardCode,
+          zip: postalCode,
+          fullName,
+        });
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "We couldn't read those card details.");
+        setSubmitting(false);
+        return;
+      }
+    } else {
+      setSubmitting(true);
     }
 
-    const [mm, yy] = expiry.split("/").map((s) => s.trim());
-    if (!mm || !yy) {
-      setError("Enter the card expiry as MM/YY.");
-      return;
-    }
-
-    setSubmitting(true);
     try {
-      const opaqueData = await tokenizeCard({
-        cardNumber,
-        month: mm,
-        year: yy,
-        cardCode,
-        zip: postalCode,
-        fullName,
-      });
-
       const result = await placeFn({
         data: {
           email,
@@ -136,7 +151,8 @@ function CheckoutPage() {
           items,
           couponCode: appliedCoupon || null,
           idempotencyKey,
-          opaqueData,
+          paymentMethod,
+          ...(opaqueData ? { opaqueData } : {}),
         },
       });
 
@@ -229,24 +245,95 @@ function CheckoutPage() {
               </section>
 
               <section className="rounded-lg border border-border p-5">
-                <h2 className="font-display text-lg font-semibold">Payment</h2>
+                <h2 className="font-display text-lg font-semibold">Payment method</h2>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  Card details are sent straight to Authorize.Net over an encrypted connection.
+                  Choose how you'd like to pay. Both options are secure and shipping stays free.
                 </p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <div className="sm:col-span-2">
-                    <label className={label} htmlFor="cardNumber">Card number</label>
-                    <input id="cardNumber" inputMode="numeric" autoComplete="cc-number" required value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} className={`${field} mt-1.5`} placeholder="4111 1111 1111 1111" />
-                  </div>
-                  <div>
-                    <label className={label} htmlFor="expiry">Expiry (MM/YY)</label>
-                    <input id="expiry" autoComplete="cc-exp" required value={expiry} onChange={(e) => setExpiry(e.target.value)} className={`${field} mt-1.5`} placeholder="09/28" />
-                  </div>
-                  <div>
-                    <label className={label} htmlFor="cardCode">Security code</label>
-                    <input id="cardCode" autoComplete="cc-csc" required value={cardCode} onChange={(e) => setCardCode(e.target.value)} className={`${field} mt-1.5`} placeholder="123" />
-                  </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod("card")}
+                    className={`flex items-start gap-3 rounded-lg border p-4 text-left transition-colors ${
+                      paymentMethod === "card" ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+                    }`}
+                  >
+                    <CreditCard className="mt-0.5 h-5 w-5 text-primary" />
+                    <span>
+                      <span className="block text-sm font-semibold">Credit or debit card</span>
+                      <span className="mt-0.5 block text-xs text-muted-foreground">
+                        Visa, Mastercard, Amex — ships right away
+                      </span>
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod("etransfer")}
+                    className={`flex items-start gap-3 rounded-lg border p-4 text-left transition-colors ${
+                      paymentMethod === "etransfer" ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+                    }`}
+                  >
+                    <Banknote className="mt-0.5 h-5 w-5 text-primary" />
+                    <span>
+                      <span className="block text-sm font-semibold">Interac e-Transfer</span>
+                      <span className="mt-0.5 block text-xs text-muted-foreground">
+                        Pay from any Canadian bank app
+                      </span>
+                    </span>
+                  </button>
                 </div>
+
+                {paymentMethod === "card" ? (
+                  <>
+                    <p className="mt-5 flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <Lock className="h-3.5 w-3.5 text-primary" /> Card details are encrypted and never stored on our
+                      servers.
+                    </p>
+                    <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                      <div className="sm:col-span-2">
+                        <label className={label} htmlFor="cardNumber">Card number</label>
+                        <input id="cardNumber" inputMode="numeric" autoComplete="cc-number" required value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} className={`${field} mt-1.5`} placeholder="4111 1111 1111 1111" />
+                      </div>
+                      <div>
+                        <label className={label} htmlFor="expiry">Expiry (MM/YY)</label>
+                        <input id="expiry" autoComplete="cc-exp" required value={expiry} onChange={(e) => setExpiry(e.target.value)} className={`${field} mt-1.5`} placeholder="09/28" />
+                      </div>
+                      <div>
+                        <label className={label} htmlFor="cardCode">Security code</label>
+                        <input id="cardCode" autoComplete="cc-csc" required value={cardCode} onChange={(e) => setCardCode(e.target.value)} className={`${field} mt-1.5`} placeholder="123" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="mt-5 rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm">
+                    <p className="font-semibold">How Interac e-Transfer works</p>
+                    <ol className="mt-3 space-y-2 text-muted-foreground">
+                      <li className="flex gap-2">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <span>Place your order — you'll get an order number right away.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <span>
+                          Send your e-Transfer to{" "}
+                          <strong className="text-foreground">{ETRANSFER_EMAIL}</strong> for the exact order total.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <span>
+                          Put your order number in the message box, and if a security question is needed use the answer{" "}
+                          <strong className="text-foreground">{ETRANSFER_SECURITY_ANSWER}</strong>.
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <span>We ship free with Canada Post Express as soon as the transfer lands.</span>
+                      </li>
+                    </ol>
+                  </div>
+                )}
               </section>
             </div>
 
@@ -309,10 +396,19 @@ function CheckoutPage() {
                 disabled={submitting}
                 className="mt-5 flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
               >
-                {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Processing…</> : <>Pay {money(totalCents)}</>}
+                {submitting ? (
+                  <><Loader2 className="h-4 w-4 animate-spin" /> Processing…</>
+                ) : paymentMethod === "etransfer" ? (
+                  <>Place order · {money(totalCents)}</>
+                ) : (
+                  <>Pay {money(totalCents)}</>
+                )}
               </button>
               <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                <Lock className="h-3.5 w-3.5 text-primary" /> Secured by Authorize.Net
+                <Lock className="h-3.5 w-3.5 text-primary" />
+                {paymentMethod === "etransfer"
+                  ? "e-Transfer instructions shown after you order"
+                  : "Secured by Authorize.Net"}
               </p>
             </aside>
           </form>

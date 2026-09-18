@@ -39,10 +39,13 @@ const placeOrderSchema = z.object({
   items: z.array(itemSchema).min(1).max(50),
   couponCode: z.string().max(40).optional().nullable(),
   idempotencyKey: z.string().min(8).max(80),
-  opaqueData: z.object({
-    dataDescriptor: z.string().min(1).max(120),
-    dataValue: z.string().min(1).max(4000),
-  }),
+  paymentMethod: z.enum(["card", "etransfer"]).default("card"),
+  opaqueData: z
+    .object({
+      dataDescriptor: z.string().min(1).max(120),
+      dataValue: z.string().min(1).max(4000),
+    })
+    .optional(),
 });
 
 export const placeOrder = createServerFn({ method: "POST" })
@@ -54,7 +57,6 @@ export const placeOrder = createServerFn({ method: "POST" })
     }
 
     const store = await import("./store.server");
-    const anet = await import("./authorize-net.server");
 
     const existing = await store.findOrderByIdempotencyKey(data.idempotencyKey);
     if (existing) {
@@ -73,26 +75,35 @@ export const placeOrder = createServerFn({ method: "POST" })
     if (oos) return { ok: false, error: `${oos.name} ${oos.size} is out of stock.`, code: "OUT_OF_STOCK" };
     if (quote.totalCents <= 0) return { ok: false, error: "This order total is invalid." };
 
-    if (!anet.paymentsConfigured()) {
-      return { ok: false, error: "Card payments aren't switched on yet.", code: "NOT_CONFIGURED" };
+    let charge: { transactionId: string; authCode: string; avsResult: string } | undefined;
+
+    if (data.paymentMethod === "card") {
+      const anet = await import("./authorize-net.server");
+      if (!anet.paymentsConfigured()) {
+        return { ok: false, error: "Card payments aren't switched on yet.", code: "NOT_CONFIGURED" };
+      }
+      if (!data.opaqueData) {
+        return { ok: false, error: "Card details are missing." };
+      }
+
+      const invoiceNumber = store.generateOrderNumber();
+      const result = await anet.chargeCard({
+        amountCents: quote.totalCents,
+        dataDescriptor: data.opaqueData.dataDescriptor,
+        dataValue: data.opaqueData.dataValue,
+        email: data.email,
+        invoiceNumber,
+        address: data.address,
+        lineItems: quote.lines.map((l) => ({
+          name: `${l.name} ${l.size}`,
+          quantity: l.quantity,
+          unitPriceCents: l.unitPriceCents,
+        })),
+      });
+
+      if (!result.ok) return { ok: false, error: result.error, code: result.code };
+      charge = result;
     }
-
-    const invoiceNumber = store.generateOrderNumber();
-    const charge = await anet.chargeCard({
-      amountCents: quote.totalCents,
-      dataDescriptor: data.opaqueData.dataDescriptor,
-      dataValue: data.opaqueData.dataValue,
-      email: data.email,
-      invoiceNumber,
-      address: data.address,
-      lineItems: quote.lines.map((l) => ({
-        name: `${l.name} ${l.size}`,
-        quantity: l.quantity,
-        unitPriceCents: l.unitPriceCents,
-      })),
-    });
-
-    if (!charge.ok) return { ok: false, error: charge.error, code: charge.code };
 
     const { orderId, orderNumber } = await store.createPaidOrder({
       email: data.email,
@@ -100,6 +111,7 @@ export const placeOrder = createServerFn({ method: "POST" })
       quote,
       couponCode: quote.couponCode,
       idempotencyKey: data.idempotencyKey,
+      paymentMethod: data.paymentMethod,
       payment: charge,
     });
 
@@ -129,7 +141,13 @@ export const placeOrder = createServerFn({ method: "POST" })
       await store.logEmail(orderId, data.email, `Order ${orderNumber}`, "confirmation", "failed", String(err));
     }
 
-    return { ok: true, orderNumber, totalCents: quote.totalCents, email: data.email };
+    return {
+      ok: true,
+      orderNumber,
+      totalCents: quote.totalCents,
+      email: data.email,
+      paymentMethod: data.paymentMethod,
+    };
   });
 
 export const lookupOrder = createServerFn({ method: "POST" })
@@ -143,11 +161,12 @@ export const lookupOrder = createServerFn({ method: "POST" })
     const rows = await sql<
       {
         id: number; order_number: string; status: string; payment_status: string;
+        payment_method: string;
         subtotal_cents: number; discount_cents: number; tax_cents: number; total_cents: number;
         coupon_code: string | null; tracking_number: string | null;
         shipping_address: Record<string, string>; created_at: string;
       }[]
-    >`SELECT id, order_number, status, payment_status, subtotal_cents, discount_cents, tax_cents,
+    >`SELECT id, order_number, status, payment_status, payment_method, subtotal_cents, discount_cents, tax_cents,
              total_cents, coupon_code, tracking_number, shipping_address, created_at
       FROM orders
       WHERE upper(order_number) = ${data.orderNumber.trim().toUpperCase()}

@@ -7,6 +7,7 @@ export type AdminOrderRow = {
   email: string;
   status: string;
   payment_status: string;
+  payment_method: string;
   total_cents: number;
   coupon_code: string | null;
   tracking_number: string | null;
@@ -68,13 +69,14 @@ export const adminOverview = createServerFn({ method: "POST" })
     const status = data.status && data.status !== "all" ? data.status : null;
     const orders = status
       ? await sql<AdminOrderRow[]>`
-          SELECT id, order_number, email, status, payment_status, total_cents, coupon_code,
+          SELECT id, order_number, email, status, payment_status, payment_method, total_cents, coupon_code,
                  tracking_number, created_at
           FROM orders WHERE status = ${status} ORDER BY created_at DESC LIMIT 200`
       : await sql<AdminOrderRow[]>`
-          SELECT id, order_number, email, status, payment_status, total_cents, coupon_code,
+          SELECT id, order_number, email, status, payment_status, payment_method, total_cents, coupon_code,
                  tracking_number, created_at
           FROM orders ORDER BY created_at DESC LIMIT 200`;
+
 
     const [stats] = await sql<
       { paid_orders: number; revenue_cents: number; pending_orders: number; customers: number }[]
@@ -109,6 +111,21 @@ export const adminOrderDetail = createServerFn({ method: "POST" })
       { slug: string; name: string; size_label: string; quantity: number; line_total_cents: number }[]
     >`SELECT slug, name, size_label, quantity, line_total_cents FROM order_items WHERE order_id = ${data.id}`;
     return { order: rows[0], items };
+  });
+
+/** Marks an Interac e-Transfer order as paid once the transfer lands in the bank account. */
+export const adminMarkPaid = createServerFn({ method: "POST" })
+  .inputValidator((d: unknown) => z.object({ id: z.number().int().positive() }).parse(d))
+  .handler(async ({ data }) => {
+    const { requireAdmin } = await import("./admin.server");
+    await requireAdmin();
+    const { getSql } = await import("@/db/client.server");
+    const sql = getSql();
+    await sql`
+      UPDATE orders
+      SET status = 'paid', payment_status = 'captured', updated_at = now()
+      WHERE id = ${data.id} AND payment_method = 'etransfer'`;
+    return { ok: true };
   });
 
 export const adminMarkShipped = createServerFn({ method: "POST" })
