@@ -46,7 +46,7 @@ function Shop() {
             "Made in Canada",
             "Third-party lab tested",
             "Free shipping with Canada Post Express",
-            "Code LABS — 30% off",
+            "Code LABS — 15% off",
           ].map((t) => (
             <li key={t} className="flex items-center gap-2">
               <Check className="h-4 w-4 text-primary" /> {t}

@@ -17,7 +17,7 @@ export function PromoBanner() {
           <Truck className="h-3.5 w-3.5" /> Free shipping on all orders
         </span>
         <span className="flex items-center gap-1.5">
-          <Tag className="h-3.5 w-3.5" /> Use code LABS for 30% off
+          <Tag className="h-3.5 w-3.5" /> Use code LABS for 15% off
         </span>
         <span className="flex items-center gap-1.5">
           <Leaf className="h-3.5 w-3.5" /> Made in Canada
@@ -89,7 +89,7 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-2 text-sm opacity-70">
             <li>support@veyronalabs.ca</li>
             <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Free shipping on all orders with Canada Post Express</li>
-            <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Use code LABS for 30% off</li>
+            <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Use code LABS for 15% off</li>
             <li className="flex items-start gap-1.5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> Made in Canada</li>
           </ul>
         </div>

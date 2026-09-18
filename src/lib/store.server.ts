@@ -64,7 +64,7 @@ export async function findCoupon(code: string): Promise<CouponRow | null> {
   if (!databaseConfigured()) {
     return code.trim().toUpperCase() === "LABS"
       ? {
-          id: 0, code: "LABS", kind: "percent", value: 30, min_subtotal_cents: 0,
+          id: 0, code: "LABS", kind: "percent", value: 15, min_subtotal_cents: 0,
           max_redemptions: null, times_redeemed: 0, starts_at: null, expires_at: null, active: true,
         }
       : null;
