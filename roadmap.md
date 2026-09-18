@@ -19,3 +19,15 @@
 - [x] Syringes product page
 - [x] All products: 5 stars, +18 reviews each
 - [x] Cart totals: Canada Post Express shipping shown as -$25.00 in red (free shipping saving)
+
+## Store backend (self-hosted)
+- [x] Database schema, migrations and seed (products, orders, customers, coupons, admin)
+- [x] Server-side pricing, coupons, tax and free-shipping logic
+- [x] Checkout page with Authorize.Net card payment
+- [x] Order confirmation and guest order lookup
+- [x] Payment webhook + order status handling
+- [x] Inventory tracking and stock decrement on paid orders
+- [x] Order/shipping/admin email notifications
+- [x] Admin dashboard (orders, inventory, coupons, customers)
+- [x] Self-hosting guide and Docker Compose
+- [ ] Waiting on live Authorize.Net keys, database URL and SMTP details
