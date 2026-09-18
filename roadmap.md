@@ -14,3 +14,7 @@
 - [x] Shop by category: plain-language use tags added
 - [x] Mix-and-match discounts removed from product pages
 - [x] Plain-language benefit descriptions on each product page
+
+- [ ] Working cart (drawer UI) + gentle upsells (bac water, syringes)
+- [ ] Syringes product page
+- [ ] All products: 5 stars, +18 reviews each
