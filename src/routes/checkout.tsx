@@ -9,6 +9,7 @@ import { vialImage } from "@/data/vial-images";
 import { getQuote, placeOrder } from "@/lib/store.functions";
 import { PROVINCES, money } from "@/lib/tax";
 import { acceptClientKey, tokenizeCard } from "@/lib/accept-js";
+import { ETRANSFER_EMAIL, ETRANSFER_SECURITY_ANSWER, type PaymentMethod } from "@/lib/etransfer";
 import type { Quote } from "@/lib/store.types";
 
 export const Route = createFileRoute("/checkout")({
@@ -55,6 +56,7 @@ function CheckoutPage() {
   const [couponInput, setCouponInput] = useState("LABS");
   const [appliedCoupon, setAppliedCoupon] = useState("LABS");
 
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cardCode, setCardCode] = useState("");
@@ -96,30 +98,43 @@ function CheckoutPage() {
     setError(null);
 
     if (items.length === 0) return;
-    if (!acceptClientKey()) {
-      setError(
-        "Card payments aren't switched on yet. Add your Authorize.Net keys to start taking live orders.",
-      );
-      return;
+
+    let opaqueData: { dataDescriptor: string; dataValue: string } | undefined;
+
+    if (paymentMethod === "card") {
+      if (!acceptClientKey()) {
+        setError(
+          "Card payments aren't switched on yet. Choose Interac e-Transfer, or add your Authorize.Net keys to take card orders.",
+        );
+        return;
+      }
+
+      const [mm, yy] = expiry.split("/").map((s) => s.trim());
+      if (!mm || !yy) {
+        setError("Enter the card expiry as MM/YY.");
+        return;
+      }
+
+      setSubmitting(true);
+      try {
+        opaqueData = await tokenizeCard({
+          cardNumber,
+          month: mm,
+          year: yy,
+          cardCode,
+          zip: postalCode,
+          fullName,
+        });
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "We couldn't read those card details.");
+        setSubmitting(false);
+        return;
+      }
+    } else {
+      setSubmitting(true);
     }
 
-    const [mm, yy] = expiry.split("/").map((s) => s.trim());
-    if (!mm || !yy) {
-      setError("Enter the card expiry as MM/YY.");
-      return;
-    }
-
-    setSubmitting(true);
     try {
-      const opaqueData = await tokenizeCard({
-        cardNumber,
-        month: mm,
-        year: yy,
-        cardCode,
-        zip: postalCode,
-        fullName,
-      });
-
       const result = await placeFn({
         data: {
           email,
@@ -136,7 +151,8 @@ function CheckoutPage() {
           items,
           couponCode: appliedCoupon || null,
           idempotencyKey,
-          opaqueData,
+          paymentMethod,
+          ...(opaqueData ? { opaqueData } : {}),
         },
       });
 
