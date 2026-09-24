@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check } from "lucide-react";
+import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
 import heroLab from "@/assets/hero-lab.mp4.asset.json";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
-import { bestSellers, categories } from "@/data/products";
+import { bestSellers, categories, products } from "@/data/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
