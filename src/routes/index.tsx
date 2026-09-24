@@ -115,6 +115,88 @@ function EmailSignup() {
   );
 }
 
+function CategoryBrowser() {
+  const [active, setActive] = useState(categories[0].key);
+  const current = categories.find((c) => c.key === active) ?? categories[0];
+  const items = products.filter((p) => p.category === current.key);
+
+  return (
+    <section className="border-b border-border bg-surface py-16 md:py-20">
+      <div className="container-page">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Browse by research area
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-semibold">Shop by Category</h2>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Pick a research focus to see every lab-tested compound we stock for it.
+            </p>
+          </div>
+          <Link
+            to="/shop"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
+          >
+            View full catalogue
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+
+        <div className="mt-8 flex gap-2 overflow-x-auto pb-2">
+          {categories.map((c) => {
+            const isActive = c.key === active;
+            const count = products.filter((p) => p.category === c.key).length;
+            return (
+              <button
+                key={c.key}
+                type="button"
+                onClick={() => setActive(c.key)}
+                aria-pressed={isActive}
+                className={`shrink-0 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all ${
+                  isActive
+                    ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                    : "border-border bg-card text-muted-foreground hover:border-primary/60 hover:text-foreground"
+                }`}
+              >
+                {c.name.split(" (")[0]}
+                <span
+                  className={`ml-2 rounded-full px-2 py-0.5 text-xs ${
+                    isActive ? "bg-white/20" : "bg-primary/10 text-primary"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 rounded-xl border border-border bg-card p-6 md:p-8">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <div>
+              <h3 className="font-display text-xl font-semibold">{current.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{current.blurb}</p>
+            </div>
+            <Link
+              to="/shop"
+              search={{ category: current.key }}
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
+            >
+              Browse all
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((p) => (
+              <ProductCard key={p.slug} product={p} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen">
