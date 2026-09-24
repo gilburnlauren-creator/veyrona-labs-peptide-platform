@@ -34,6 +34,8 @@ export const productVariants = pgTable(
     priceCents: integer("price_cents").notNull(),
     sku: text("sku").notNull(),
     stock: integer("stock").notNull().default(0),
+    unitCostCents: integer("unit_cost_cents").notNull().default(0),
+    reorderAt: integer("reorder_at").notNull().default(5),
     active: boolean("active").notNull().default(true),
   },
   (t) => ({

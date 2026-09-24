@@ -12,6 +12,12 @@ import tb500 from "@/assets/vials/tb-500.jpg";
 import semax from "@/assets/vials/semax.jpg";
 import selank from "@/assets/vials/selank.jpg";
 import bacWater from "@/assets/vials/bac-water.jpg";
+import semaglutide from "@/assets/vials/semaglutide.jpg";
+import tirzepatide from "@/assets/vials/tirzepatide.jpg";
+import cjcDac from "@/assets/vials/cjc-dac.jpg";
+import melanotan2 from "@/assets/vials/melanotan-2.jpg";
+import pt141 from "@/assets/vials/pt-141.jpg";
+import bpcTbBlend from "@/assets/vials/bpc-tb-blend.jpg";
 import syringes from "@/assets/vials/syringes.jpg";
 
 const images: Record<string, string> = {
@@ -29,6 +35,12 @@ const images: Record<string, string> = {
   selank,
   "bac-water": bacWater,
   syringes,
+  "semaglutide": semaglutide,
+  "tirzepatide": tirzepatide,
+  "cjc-dac": cjcDac,
+  "melanotan-2": melanotan2,
+  "pt-141": pt141,
+  "bpc-tb-blend": bpcTbBlend,
 };
 
 export const vialImage = (slug: string) => images[slug] ?? fallback;

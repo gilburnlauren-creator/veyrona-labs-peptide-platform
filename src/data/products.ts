@@ -1,3 +1,5 @@
+import { inventory } from "./inventory";
+
 export type ProductDetail = {
   cas: string;
   aka: string;
@@ -370,6 +372,78 @@ const seed: Seed[] = [
     },
   },
   {
+    slug: "semaglutide", name: "Semaglutide", size: "10mg", price: 45, category: "Metabolic", badge: "New", rating: 5, reviews: 24,
+    detail: {
+      cas: "910463-68-2",
+      overview: "Semaglutide is one of the best-known peptides in weight loss research. Researchers study it for appetite control, blood sugar regulation and steady fat loss.",
+      aka: "GLP-1 receptor agonist", className: "Synthetic GLP-1 analogue / metabolic research tool",
+      molecularWeight: "~4113.6 Da", sequenceLength: "31 amino acids", targets: "GLP-1 receptor", batch: "VL-SEM-01", purity: "99.3%",
+      summary: "Semaglutide is a long-acting GLP-1 receptor agonist used in receptor pharmacology and metabolic cell models examining incretin signalling.",
+      research: [{ title: "GLP-1 receptor assays", body: "Used in cAMP accumulation assays in GLP-1R expressing cell lines." }],
+      tags: ["Metabolic research", "GLP-1 pharmacology"],
+    },
+  },
+  {
+    slug: "tirzepatide", name: "Tirzepatide", size: "10mg", price: 53, category: "Metabolic", badge: "New", rating: 5, reviews: 26,
+    detail: {
+      cas: "2023788-19-2",
+      overview: "Tirzepatide is a dual-action weight loss peptide researched for appetite control, fat loss and blood sugar management — one of the most popular compounds in metabolic research.",
+      aka: "LY3298176; GIP/GLP-1 dual agonist", className: "Synthetic dual receptor agonist / metabolic research tool",
+      molecularWeight: "~4813.5 Da", sequenceLength: "39 amino acids", targets: "GIP · GLP-1 receptors", batch: "VL-TRZ-01", purity: "99.4%",
+      summary: "Tirzepatide is a dual GIP and GLP-1 receptor agonist studied in metabolic cell models of incretin signalling.",
+      research: [{ title: "Dual receptor assays", body: "Used to compare GIP and GLP-1 receptor activation in transfected cell lines." }],
+      tags: ["Metabolic research", "Dual agonist studies"],
+    },
+  },
+  {
+    slug: "cjc-dac", name: "CJC-1295 with DAC", size: "5mg", price: 49, category: "Secretagogue", rating: 5, reviews: 19,
+    detail: {
+      cas: "863288-34-0",
+      overview: "CJC-1295 with DAC is a long-acting growth hormone releasing peptide researched for muscle growth, fat loss, recovery and anti-aging.",
+      aka: "Modified GRF (1-29) with Drug Affinity Complex", className: "GHRH analogue / secretagogue research tool",
+      molecularWeight: "~3647 Da", sequenceLength: "30 amino acids", targets: "GHRH receptor", batch: "VL-CJD-01", purity: "99.0%",
+      summary: "CJC-1295 with DAC is a GHRH analogue bearing a maleimide linker that binds albumin, studied for extended receptor activation.",
+      research: [{ title: "Extended-action studies", body: "Used in models comparing short and long acting GHRH analogues." }],
+      tags: ["Secretagogue research", "GHRH receptor"],
+    },
+  },
+  {
+    slug: "melanotan-2", name: "Melanotan II", size: "10mg", price: 41, category: "Cellular", rating: 5, reviews: 21,
+    detail: {
+      cas: "121062-08-6",
+      overview: "Melanotan II is a tanning peptide researched for skin pigmentation, sun-free tanning and libido.",
+      aka: "MT-II", className: "Melanocortin analogue / pigmentation research tool",
+      molecularWeight: "~1024.2 Da", sequenceLength: "7 amino acids (cyclic)", targets: "Melanocortin receptors", batch: "VL-MT2-01", purity: "99.1%",
+      summary: "Melanotan II is a cyclic α-MSH analogue studied in melanocyte cultures examining melanogenesis.",
+      research: [{ title: "Melanogenesis assays", body: "Used in melanocyte cultures measuring melanin output." }],
+      tags: ["Pigmentation research", "Melanocortin receptors"],
+    },
+  },
+  {
+    slug: "pt-141", name: "PT-141", size: "10mg", price: 53, category: "Neuro", rating: 5, reviews: 20,
+    detail: {
+      cas: "189691-06-3",
+      overview: "PT-141 is researched for libido, sexual arousal and desire in both men and women.",
+      aka: "Bremelanotide", className: "Melanocortin agonist / neuroscience research tool",
+      molecularWeight: "~1025.2 Da", sequenceLength: "7 amino acids (cyclic)", targets: "MC3R · MC4R", batch: "VL-P41-01", purity: "99.2%",
+      summary: "PT-141 is a cyclic melanocortin agonist studied in central receptor signalling models.",
+      research: [{ title: "MC4R signalling", body: "Used in receptor activation assays for melanocortin-4." }],
+      tags: ["Neuroscience models", "Melanocortin receptors"],
+    },
+  },
+  {
+    slug: "bpc-tb-blend", name: "BPC-157 + TB-500 Blend", size: "20mg", price: 90, category: "Blends", rating: 5, reviews: 22,
+    detail: {
+      cas: "Blend — see components",
+      overview: "The BPC-157 + TB-500 blend is the classic healing stack, researched for injury recovery, tendon and ligament repair, and reduced inflammation.",
+      aka: "BPC-157 10mg + TB-500 10mg", className: "Multi-peptide research blend",
+      molecularWeight: "Mixed", sequenceLength: "Mixed", targets: "Repair signalling · cell migration", batch: "VL-BB2-01", purity: "≥98% per component",
+      summary: "A combination vial containing BPC-157 and TB-500 for protocols studying both repair compounds together.",
+      research: [{ title: "Component verification", body: "Each component is verified independently before blending." }],
+      tags: ["Multi-compound protocols", "Tissue repair"],
+    },
+  },
+  {
     slug: "bac-water",
     name: "Bacteriostatic Water",
     size: "30mL",
@@ -437,6 +511,8 @@ const STEPS = [10, 20, 30, 50];
 const DISCOUNT = [1, 0.92, 0.88, 0.82];
 
 function buildSizes(p: Seed): ProductSize[] {
+  const inv = inventory[p.slug];
+  if (inv) return inv.map((s) => ({ label: s.label, price: s.price }));
   if (p.sizes) return p.sizes;
   const baseMg = Number.parseFloat(p.size);
   if (!p.size.toLowerCase().endsWith("mg") || Number.isNaN(baseMg)) {
