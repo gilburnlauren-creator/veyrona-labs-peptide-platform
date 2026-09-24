@@ -172,7 +172,7 @@ function Index() {
               aria-label="Veyrona Labs research peptide vials in the lab"
               width={1280}
               height={1024}
-              className="aspect-[5/4] w-full rounded-lg border border-border object-cover"
+              className="aspect-video w-full rounded-lg border border-border object-cover"
             />
           </div>
         </section>
