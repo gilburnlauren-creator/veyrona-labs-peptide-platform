@@ -31,3 +31,7 @@
 - [x] Admin dashboard (orders, inventory, coupons, customers)
 - [x] Self-hosting guide and Docker Compose
 - [ ] Waiting on live Authorize.Net keys, database URL and SMTP details
+
+## Print labels
+- [x] Deliver every vial/strength label as an individual, exact 2 × 0.5 inch PDF
+- [x] Complete production preflight for a 20,000-sticker order: spelling, dimensions, margins, fonts and visual consistency
