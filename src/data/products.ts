@@ -561,10 +561,10 @@ export const bestSellers: Product[] = [
 ].slice(0, 8);
 
 export const categories = [
-  { name: "Metabolic Research (weight loss & fat metabolism)", blurb: "Batch-tracked metabolic compounds including Retatrutide and MOTS-C.", key: "Metabolic" },
-  { name: "Cellular Research (recovery, healing & skin)", blurb: "BPC-157, TB-500, GHK-Cu, KPV and related compounds.", key: "Cellular" },
-  { name: "Secretagogue Research (growth hormone & anti-ageing)", blurb: "CJC-1295, Ipamorelin, Sermorelin, Tesamorelin.", key: "Secretagogue" },
-  { name: "Neuro Research (focus, mood & cognition)", blurb: "Semax, Selank, DSIP and nootropic research compounds.", key: "Neuro" },
-  { name: "Peptide Blends (beauty, glow & repair stacks)", blurb: "GLOW, KLOW, CJC/IPA and combination vials.", key: "Blends" },
-  { name: "Laboratory Supplies (reconstitution & bench essentials)", blurb: "Bacteriostatic water, storage cases, lab essentials.", key: "Lab Supplies" },
+  { name: "Weight Loss & Fat Metabolism", blurb: "Batch-tracked metabolic compounds including Retatrutide and MOTS-C.", key: "Metabolic" },
+  { name: "Recovery, Healing & Skin", blurb: "BPC-157, TB-500, GHK-Cu, KPV and related compounds.", key: "Cellular" },
+  { name: "Growth Hormone & Anti-Aging", blurb: "CJC-1295, Ipamorelin, Sermorelin, Tesamorelin.", key: "Secretagogue" },
+  { name: "Focus, Mood & Cognition", blurb: "Semax, Selank, DSIP and nootropic research compounds.", key: "Neuro" },
+  { name: "Beauty, Glow & Repair Stacks", blurb: "GLOW, KLOW, CJC/IPA and combination vials.", key: "Blends" },
+  { name: "Reconstitution & Lab Essentials", blurb: "Bacteriostatic water, storage cases, lab essentials.", key: "Lab Supplies" },
 ];
