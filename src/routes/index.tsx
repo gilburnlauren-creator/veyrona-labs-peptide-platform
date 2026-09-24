@@ -278,6 +278,9 @@ function Index() {
           </div>
         </section>
 
+        {/* Shop by category — directly under the trust strip */}
+        <CategoryBrowser />
+
         {/* Best sellers */}
         <section className="container-page py-16 md:py-20">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -300,30 +303,6 @@ function Index() {
             >
               Shop All Peptides
             </Link>
-          </div>
-        </section>
-
-        {/* Categories */}
-        <section className="border-y border-border bg-surface py-16 md:py-20">
-          <div className="container-page">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Browse by research area
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold">Shop by Category</h2>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map((c) => (
-                <Link
-                  key={c.key}
-                  to="/shop"
-                  search={{ category: c.key }}
-                  className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary"
-                >
-                  <h3 className="font-display text-base font-semibold">{c.name}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{c.blurb}</p>
-                  <span className="mt-4 inline-block text-sm font-semibold text-primary">Browse →</span>
-                </Link>
-              ))}
-            </div>
           </div>
         </section>
 
