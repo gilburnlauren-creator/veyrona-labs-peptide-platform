@@ -33,5 +33,5 @@
 - [ ] Waiting on live Authorize.Net keys, database URL and SMTP details
 
 ## Print labels
-- [ ] Deliver every vial/strength label as an individual, exact 2 × 0.5 inch PDF
-- [ ] Complete production preflight for a 20,000-sticker order: spelling, dimensions, margins, fonts and visual consistency
+- [x] Deliver every vial/strength label as an individual, exact 2 × 0.5 inch PDF
+- [x] Complete production preflight for a 20,000-sticker order: spelling, dimensions, margins, fonts and visual consistency
