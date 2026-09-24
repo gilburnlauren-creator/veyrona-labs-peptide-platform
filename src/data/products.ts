@@ -79,7 +79,7 @@ const seed: Seed[] = [
     category: "Cellular",
     badge: "Best Seller",
     rating: 5,
-    reviews: 30,
+    reviews: 148,
     detail: {
       cas: "137525-51-0",
       overview: "BPC-157 is one of the most popular peptides in healing and recovery research. Researchers study it for tissue repair, tendon and ligament recovery, gut health and inflammation, making it a go-to compound in injury and regenerative research.",
@@ -107,7 +107,7 @@ const seed: Seed[] = [
     price: 50,
     category: "Cellular",
     rating: 5,
-    reviews: 25,
+    reviews: 31,
     detail: {
       cas: "67727-97-3",
       overview: "KPV is widely studied in inflammation and gut health research. Researchers explore it for calming inflammatory responses, supporting gut and skin health, and immune system regulation.",
@@ -135,7 +135,7 @@ const seed: Seed[] = [
     category: "Cellular",
     badge: "Selling Fast",
     rating: 5,
-    reviews: 27,
+    reviews: 96,
     detail: {
       cas: "89030-95-5",
       overview: "GHK-Cu is the leading beauty peptide. It is heavily researched for skin rejuvenation, collagen production, wrinkle reduction, skin firmness and hair growth — a favourite in anti-aging, beauty and cosmetic research.",
@@ -162,7 +162,7 @@ const seed: Seed[] = [
     price: 110,
     category: "Blends",
     rating: 5,
-    reviews: 23,
+    reviews: 73,
     detail: {
       cas: "Blend — see components",
       aka: "GHK-Cu + BPC-157 + TB-500 combination vial",
@@ -189,7 +189,7 @@ const seed: Seed[] = [
     price: 50,
     category: "Metabolic",
     rating: 5,
-    reviews: 24,
+    reviews: 33,
     detail: {
       cas: "1627580-64-6",
       overview: "MOTS-C is a mitochondrial peptide studied in energy, metabolism and longevity research. Researchers explore it for fat metabolism, exercise performance, cellular energy and healthy aging.",
@@ -216,7 +216,7 @@ const seed: Seed[] = [
     price: 130,
     category: "Blends",
     rating: 5,
-    reviews: 22,
+    reviews: 35,
     detail: {
       cas: "Blend — see components",
       aka: "KPV + GHK-Cu + BPC-157 + TB-500 combination vial",
@@ -243,7 +243,7 @@ const seed: Seed[] = [
     price: 75,
     category: "Secretagogue",
     rating: 5,
-    reviews: 26,
+    reviews: 47,
     detail: {
       cas: "863288-34-0 / 170851-70-4",
       overview: "CJC-1295 + Ipamorelin is the classic growth hormone secretagogue stack. Researchers study this pairing for muscle growth, fat loss, improved sleep, recovery and anti-aging through natural growth hormone release.",
@@ -270,7 +270,7 @@ const seed: Seed[] = [
     price: 95,
     category: "Secretagogue",
     rating: 5,
-    reviews: 21,
+    reviews: 43,
     detail: {
       cas: "218949-48-5",
       overview: "Tesamorelin is a GHRH analogue researched for reducing abdominal and visceral fat, growth hormone release, body composition and anti-aging. It is one of the most studied peptides in fat-reduction research.",
@@ -297,7 +297,7 @@ const seed: Seed[] = [
     price: 70,
     category: "Cellular",
     rating: 5,
-    reviews: 22,
+    reviews: 64,
     detail: {
       cas: "77591-33-4",
       overview: "TB-500 is a healing and recovery peptide researched for tissue repair, wound healing, flexibility, muscle recovery and reduced inflammation — a staple in injury and regenerative research.",
@@ -324,7 +324,7 @@ const seed: Seed[] = [
     price: 60,
     category: "Neuro",
     rating: 5,
-    reviews: 20,
+    reviews: 29,
     detail: {
       cas: "80714-61-0",
       overview: "Semax is a nootropic peptide studied for focus, memory, mental clarity, mood and cognitive performance. Researchers also explore it for neuroprotection and brain health.",
@@ -351,7 +351,7 @@ const seed: Seed[] = [
     price: 60,
     category: "Neuro",
     rating: 5,
-    reviews: 20,
+    reviews: 27,
     detail: {
       cas: "129954-34-3",
       overview: "Selank is a nootropic and calming peptide researched for anxiety relief, stress reduction, mood balance, focus and immune support — often studied alongside Semax in cognitive research.",
@@ -372,7 +372,7 @@ const seed: Seed[] = [
     },
   },
   {
-    slug: "semaglutide", name: "Semaglutide", size: "10mg", price: 45, category: "Metabolic", badge: "New", rating: 5, reviews: 24,
+    slug: "semaglutide", name: "Semaglutide", size: "10mg", price: 45, category: "Metabolic", badge: "New", rating: 5, reviews: 287,
     detail: {
       cas: "910463-68-2",
       overview: "Semaglutide is one of the best-known peptides in weight loss research. Researchers study it for appetite control, blood sugar regulation and steady fat loss.",
@@ -384,7 +384,7 @@ const seed: Seed[] = [
     },
   },
   {
-    slug: "tirzepatide", name: "Tirzepatide", size: "10mg", price: 53, category: "Metabolic", badge: "New", rating: 5, reviews: 26,
+    slug: "tirzepatide", name: "Tirzepatide", size: "10mg", price: 53, category: "Metabolic", badge: "New", rating: 5, reviews: 264,
     detail: {
       cas: "2023788-19-2",
       overview: "Tirzepatide is a dual-action weight loss peptide researched for appetite control, fat loss and blood sugar management — one of the most popular compounds in metabolic research.",
@@ -396,7 +396,7 @@ const seed: Seed[] = [
     },
   },
   {
-    slug: "cjc-dac", name: "CJC-1295 with DAC", size: "5mg", price: 49, category: "Secretagogue", rating: 5, reviews: 19,
+    slug: "cjc-dac", name: "CJC-1295 with DAC", size: "5mg", price: 49, category: "Secretagogue", rating: 5, reviews: 41,
     detail: {
       cas: "863288-34-0",
       overview: "CJC-1295 with DAC is a long-acting growth hormone releasing peptide researched for muscle growth, fat loss, recovery and anti-aging.",
@@ -408,7 +408,7 @@ const seed: Seed[] = [
     },
   },
   {
-    slug: "melanotan-2", name: "Melanotan II", size: "10mg", price: 41, category: "Cellular", rating: 5, reviews: 21,
+    slug: "melanotan-2", name: "Melanotan II", size: "10mg", price: 41, category: "Cellular", rating: 5, reviews: 38,
     detail: {
       cas: "121062-08-6",
       overview: "Melanotan II is a tanning peptide researched for skin pigmentation, sun-free tanning and libido.",
@@ -420,7 +420,7 @@ const seed: Seed[] = [
     },
   },
   {
-    slug: "pt-141", name: "PT-141", size: "10mg", price: 53, category: "Neuro", rating: 5, reviews: 20,
+    slug: "pt-141", name: "PT-141", size: "10mg", price: 53, category: "Neuro", rating: 5, reviews: 51,
     detail: {
       cas: "189691-06-3",
       overview: "PT-141 is researched for libido, sexual arousal and desire in both men and women.",
@@ -432,7 +432,7 @@ const seed: Seed[] = [
     },
   },
   {
-    slug: "bpc-tb-blend", name: "BPC-157 + TB-500 Blend", size: "20mg", price: 90, category: "Blends", rating: 5, reviews: 22,
+    slug: "bpc-tb-blend", name: "BPC-157 + TB-500 Blend", size: "20mg", price: 90, category: "Blends", rating: 5, reviews: 58,
     detail: {
       cas: "Blend — see components",
       overview: "The BPC-157 + TB-500 blend is the classic healing stack, researched for injury recovery, tendon and ligament repair, and reduced inflammation.",
@@ -450,7 +450,7 @@ const seed: Seed[] = [
     price: 15,
     category: "Lab Supplies",
     rating: 5,
-    reviews: 29,
+    reviews: 86,
     detail: {
       cas: "7732-18-5 (water)",
       overview: "Bacteriostatic Water is the standard diluent used to reconstitute lyophilised research peptides. The benzyl alcohol preservative keeps the vial sterile across multiple draws, making it an essential companion to every peptide order.",
@@ -478,7 +478,7 @@ const seed: Seed[] = [
     price: 12,
     category: "Lab Supplies",
     rating: 5,
-    reviews: 26,
+    reviews: 79,
     sizes: [
       { label: "10 pack", price: 12 },
       { label: "30 pack", price: 29 },
