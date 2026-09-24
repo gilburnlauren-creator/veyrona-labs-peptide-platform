@@ -86,10 +86,10 @@ export const adminOverview = createServerFn({ method: "POST" })
         (SELECT count(*) FROM orders WHERE status = 'pending')::int AS pending_orders,
         (SELECT count(*) FROM customers)::int AS customers`;
 
-    const lowStock = await sql<{ slug: string; name: string; size_label: string; stock: number }[]>`
-      SELECT p.slug, p.name, v.size_label, v.stock
+    const lowStock = await sql<{ slug: string; name: string; size_label: string; stock: number; sku: string }[]>`
+      SELECT p.slug, p.name, v.size_label, v.stock, v.sku
       FROM product_variants v JOIN products p ON p.id = v.product_id
-      WHERE v.stock <= 5 ORDER BY v.stock ASC LIMIT 20`;
+      WHERE v.active AND v.stock <= v.reorder_at ORDER BY v.stock ASC LIMIT 30`;
 
     return { orders, stats: stats!, lowStock };
   });
@@ -192,9 +192,12 @@ export const adminProducts = createServerFn({ method: "GET" }).handler(async () 
     {
       variant_id: number; slug: string; name: string; size_label: string;
       price_cents: number; stock: number; active: boolean; sku: string;
+      unit_cost_cents: number; reorder_at: number; sold: number;
     }[]
   >`SELECT v.id AS variant_id, p.slug, p.name, v.size_label, v.price_cents, v.stock,
-           (v.active AND p.active) AS active, v.sku
+           (v.active AND p.active) AS active, v.sku, v.unit_cost_cents, v.reorder_at,
+           coalesce((SELECT sum(i.quantity) FROM order_items i JOIN orders o ON o.id = i.order_id
+                     WHERE i.variant_id = v.id AND o.status NOT IN ('failed','cancelled','refunded')), 0)::int AS sold
     FROM product_variants v JOIN products p ON p.id = v.product_id
     ORDER BY p.name, v.price_cents`;
 });

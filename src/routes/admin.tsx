@@ -202,7 +202,7 @@ function OrdersTab() {
           <ul className="mt-2 grid gap-1 text-sm text-muted-foreground sm:grid-cols-2">
             {data.lowStock.map((v) => (
               <li key={`${v.slug}-${v.size_label}`}>
-                {v.name} {v.size_label} — {v.stock} left
+                {v.name} {v.size_label} ({v.sku}) — {v.stock} left, time to reorder
               </li>
             ))}
           </ul>
@@ -320,7 +320,10 @@ function InventoryTab() {
             <th className="px-4 py-3">Product</th>
             <th className="px-4 py-3">Size</th>
             <th className="px-4 py-3">Price (CAD)</th>
+            <th className="px-4 py-3">Cost / vial</th>
+            <th className="px-4 py-3">Sold</th>
             <th className="px-4 py-3">Stock</th>
+            <th className="px-4 py-3">Status</th>
             <th className="px-4 py-3">Visible</th>
           </tr>
         </thead>
@@ -344,6 +347,8 @@ function InventoryTab() {
                   }}
                 />
               </td>
+              <td className="px-4 py-3 text-muted-foreground">${(r.unit_cost_cents / 100).toFixed(2)}</td>
+              <td className="px-4 py-3">{r.sold}</td>
               <td className="px-4 py-3">
                 <input
                   className={`${input} w-24`}
@@ -357,6 +362,15 @@ function InventoryTab() {
                     }
                   }}
                 />
+              </td>
+              <td className="px-4 py-3 text-xs font-semibold">
+                {r.stock === 0 ? (
+                  <span className="text-destructive">Sold out</span>
+                ) : r.stock <= r.reorder_at ? (
+                  <span className="text-destructive">Reorder (at {r.reorder_at})</span>
+                ) : (
+                  <span className="text-primary">OK</span>
+                )}
               </td>
               <td className="px-4 py-3">
                 <input
