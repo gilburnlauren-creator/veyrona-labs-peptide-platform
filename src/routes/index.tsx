@@ -210,7 +210,7 @@ function Index() {
             alt="Veyrona Labs research peptide vials"
             width={1600}
             height={1000}
-            className="absolute inset-0 h-full w-full object-cover object-[70%_center] md:object-right"
+            className="absolute inset-y-0 right-0 h-full w-full object-cover object-[70%_center] md:w-[65%] md:object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background/40 md:bg-gradient-to-r md:from-background md:via-background/85 md:to-transparent" />
           <div className="container-page relative flex min-h-[560px] items-center py-16 md:min-h-[640px] md:py-24">
