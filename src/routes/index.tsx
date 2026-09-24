@@ -115,9 +115,11 @@ function EmailSignup() {
   );
 }
 
+const firstCategory = categories[0]!;
+
 function CategoryBrowser() {
-  const [active, setActive] = useState(categories[0].key);
-  const current = categories.find((c) => c.key === active) ?? categories[0];
+  const [active, setActive] = useState(firstCategory.key);
+  const current = categories.find((c) => c.key === active) ?? firstCategory;
   const items = products.filter((p) => p.category === current.key);
 
   return (
