@@ -2,7 +2,6 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
-import heroLab from "@/assets/hero-lab.mp4.asset.json";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
 import { bestSellers, categories, products } from "@/data/products";
@@ -205,34 +204,47 @@ function Index() {
       <SiteHeader />
       <main>
         {/* Hero */}
-        <section className="border-b border-border bg-surface">
-          <div className="container-page grid items-center gap-12 py-16 md:grid-cols-2 md:py-24">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                Laboratory Research Peptides
-              </p>
-              <h1 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">
-                Buy Research Peptides in Canada
+        <section className="relative overflow-hidden border-b border-border bg-surface">
+          <img
+            src={heroVials}
+            alt="Veyrona Labs research peptide vials"
+            width={1600}
+            height={1000}
+            className="absolute inset-y-0 right-0 h-full w-full object-cover object-[70%_center] md:w-[65%] md:object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background/40 md:bg-gradient-to-r md:from-background md:via-background/85 md:to-transparent" />
+          <div className="container-page relative flex min-h-[560px] items-center py-16 md:min-h-[640px] md:py-24">
+            <div className="max-w-2xl">
+              <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
+                The Best{" "}
+                <span className="underline decoration-primary decoration-4 underline-offset-8">
+                  Research Peptides
+                </span>{" "}
+                in{" "}
+                <span className="underline decoration-primary decoration-4 underline-offset-8">
+                  Canada
+                </span>
+                .
               </h1>
-              <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
-                Veyrona Labs supplies premium research peptides across Canada with verified batch
-                testing, third-party certificates of analysis, fast shipping and secure checkout.
+              <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
+                Lab-tested research peptides at fair prices. Join thousands of Canadian researchers
+                who trust Veyrona Labs for verified, batch-tracked quality.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to="/shop"
-                  className="rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-opacity hover:opacity-90"
                 >
-                  Shop All Peptides
+                  Shop Now <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   to="/coas"
-                  className="rounded-md border border-primary px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  className="inline-flex items-center rounded-full border-2 border-primary bg-background/60 px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   View COAs
                 </Link>
               </div>
-              <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium text-muted-foreground">
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
                 {[
                   "Made in Canada",
                   "Lab Tested",
@@ -245,19 +257,6 @@ function Index() {
                 ))}
               </ul>
             </div>
-            <video
-              src={heroLab.url}
-              poster={heroVials}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="Veyrona Labs research peptide vials in the lab"
-              width={1280}
-              height={1024}
-              className="aspect-video w-full rounded-lg border border-border object-cover"
-            />
           </div>
         </section>
 
