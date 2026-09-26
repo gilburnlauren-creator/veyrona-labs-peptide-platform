@@ -222,9 +222,13 @@ export function CartDrawer() {
             <ul className="divide-y divide-border">
               {lines.map((l) => (
                 <li key={`${l.slug}-${l.size}`} className="flex gap-3 px-5 py-4">
-                  <Link to="/products/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="shrink-0">
-                    <img src={vialImage(l.slug)} alt="" width={816} height={816} loading="lazy" className="h-16 w-16 rounded-md border border-border bg-surface object-contain" />
-                  </Link>
+                  {l.slug === GIFT_SLUG ? (
+                    <img src={vialImage(l.slug)} alt="" width={816} height={816} loading="lazy" className="h-16 w-16 shrink-0 rounded-md border border-border bg-surface object-contain" />
+                  ) : (
+                    <Link to="/products/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="shrink-0">
+                      <img src={vialImage(l.slug)} alt="" width={816} height={816} loading="lazy" className="h-16 w-16 rounded-md border border-border bg-surface object-contain" />
+                    </Link>
+                  )}
                   <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-2">
                       <div>
