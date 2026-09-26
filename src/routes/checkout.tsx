@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Banknote, Check, CreditCard, Loader2, Lock, ShieldCheck, Truck } from "lucide-react";
+import { Banknote, Check, CreditCard, Loader2, Lock, ShieldCheck, Truck, Star } from "lucide-react";
 
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { useCart } from "@/components/cart";
@@ -414,7 +414,15 @@ function CheckoutPage() {
             </div>
 
             <aside className="h-fit rounded-lg border border-border bg-surface p-5 lg:sticky lg:top-6">
-              <h2 className="font-display text-lg font-semibold">Order summary</h2>
+              <div className="flex items-center gap-2 border-b border-border pb-4">
+                <div className="flex" aria-hidden="true">
+                  {[0,1,2,3,4].map((i) => (
+                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                  ))}
+                </div>
+                <span className="text-xs font-medium text-muted-foreground">Rated 5.0 by 2,100+ Canadian researchers</span>
+              </div>
+              <h2 className="font-display text-lg font-semibold mt-4">Order summary</h2>
               <ul className="mt-4 space-y-3">
                 {lines.map((l) => (
                   <li key={`${l.slug}-${l.size}`} className="flex items-center gap-3">
