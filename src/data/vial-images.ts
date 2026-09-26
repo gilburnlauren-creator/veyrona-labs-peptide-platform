@@ -19,6 +19,7 @@ import melanotan2 from "@/assets/vials/melanotan-2.jpg";
 import pt141 from "@/assets/vials/pt-141.jpg";
 import bpcTbBlend from "@/assets/vials/bpc-tb-blend.jpg";
 import syringes from "@/assets/vials/syringes.jpg";
+import surpriseGift from "@/assets/vials/surprise-gift.jpg";
 
 const images: Record<string, string> = {
   retatrutide,
@@ -41,6 +42,7 @@ const images: Record<string, string> = {
   "melanotan-2": melanotan2,
   "pt-141": pt141,
   "bpc-tb-blend": bpcTbBlend,
+  "surprise-gift": surpriseGift,
 };
 
 export const vialImage = (slug: string) => images[slug] ?? fallback;

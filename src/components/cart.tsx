@@ -108,6 +108,36 @@ export function CartButton() {
 }
 
 const UPSELL_SLUGS = ["bac-water", "syringes"];
+const GIFT_SLUG = "surprise-gift";
+
+function SurpriseGift() {
+  const { lines, add, remove } = useCart();
+  const added = lines.some((l) => l.slug === GIFT_SLUG);
+  if (lines.filter((l) => l.slug !== GIFT_SLUG).length === 0) return null;
+
+  return (
+    <div className="border-t border-border px-5 py-4">
+      <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-primary/50 bg-primary/5 p-3 transition-colors hover:border-primary">
+        <input
+          type="checkbox"
+          checked={added}
+          onChange={(e) =>
+            e.target.checked
+              ? add({ slug: GIFT_SLUG, name: "Surprise Gift", size: "Free with your order", price: 0 })
+              : remove(GIFT_SLUG, "Free with your order")
+          }
+          className="h-4 w-4 shrink-0 accent-primary"
+        />
+        <img src={vialImage(GIFT_SLUG)} alt="" width={816} height={816} loading="lazy" className="h-12 w-12 rounded object-contain" />
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-semibold">Surprise Gift</p>
+          <p className="text-xs text-muted-foreground">A little thank-you from us — add it free to your order</p>
+        </div>
+        <span className="shrink-0 text-sm font-bold text-primary">$0.00</span>
+      </label>
+    </div>
+  );
+}
 
 function Upsells() {
   const { lines, add } = useCart();
@@ -192,9 +222,13 @@ export function CartDrawer() {
             <ul className="divide-y divide-border">
               {lines.map((l) => (
                 <li key={`${l.slug}-${l.size}`} className="flex gap-3 px-5 py-4">
-                  <Link to="/products/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="shrink-0">
-                    <img src={vialImage(l.slug)} alt="" width={816} height={816} loading="lazy" className="h-16 w-16 rounded-md border border-border bg-surface object-contain" />
-                  </Link>
+                  {l.slug === GIFT_SLUG ? (
+                    <img src={vialImage(l.slug)} alt="" width={816} height={816} loading="lazy" className="h-16 w-16 shrink-0 rounded-md border border-border bg-surface object-contain" />
+                  ) : (
+                    <Link to="/products/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="shrink-0">
+                      <img src={vialImage(l.slug)} alt="" width={816} height={816} loading="lazy" className="h-16 w-16 rounded-md border border-border bg-surface object-contain" />
+                    </Link>
+                  )}
                   <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-2">
                       <div>
@@ -223,6 +257,7 @@ export function CartDrawer() {
             </ul>
           )}
           <Upsells />
+          <SurpriseGift />
         </div>
 
         {lines.length > 0 && (
