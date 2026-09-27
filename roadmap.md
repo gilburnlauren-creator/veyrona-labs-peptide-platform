@@ -35,3 +35,4 @@
 ## Print labels
 - [x] Deliver every vial/strength label as an individual, exact 2 × 0.5 inch PDF
 - [x] Complete production preflight for a 20,000-sticker order: spelling, dimensions, margins, fonts and visual consistency
+- [x] Rebuild all 38 vial/strength labels at corrected 1.5 × 0.5 inch size as sharp PDFs; verify names, strengths, embedded fonts and every rendered page
