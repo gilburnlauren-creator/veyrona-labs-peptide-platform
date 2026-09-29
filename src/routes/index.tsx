@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight, Star } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { GoogleG } from "@/components/google-g";
 import { ProductCard } from "@/components/product-card";
 import { bestSellers, categories, products } from "@/data/products";
 
