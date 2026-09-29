@@ -250,11 +250,11 @@ function Index() {
           <div className="container-page relative flex min-h-[560px] items-center py-16 md:min-h-[640px] md:py-24">
             <div className="max-w-2xl">
               <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-                The Best{" "}
+                The Only{" "}
                 <span className="underline decoration-primary decoration-4 underline-offset-8">
-                  Research Peptides
+                  Peptides
                 </span>{" "}
-                in{" "}
+                Made in{" "}
                 <span className="underline decoration-primary decoration-4 underline-offset-8">
                   Canada
                 </span>
