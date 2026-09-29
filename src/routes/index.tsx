@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight } from "lucide-react";
+import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight, Star } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
@@ -302,6 +302,54 @@ function Index() {
             >
               Shop All Peptides
             </Link>
+          </div>
+        </section>
+
+        {/* Customer reviews */}
+        <section className="border-y border-border bg-surface py-16 md:py-20">
+          <div className="container-page">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                What Researchers Are Saying
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-semibold">
+                Rated 5.0 by Canadian Researchers
+              </h2>
+              <div className="mt-4 flex items-center justify-center gap-1.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                ))}
+                <span className="ml-2 text-sm font-medium text-muted-foreground">
+                  2,100+ verified reviews
+                </span>
+              </div>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {reviews.map((r) => (
+                <figure
+                  key={r.name}
+                  className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm"
+                >
+                  <div className="flex gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    “{r.text}”
+                  </blockquote>
+                  <figcaption className="mt-5 flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                      {r.name.charAt(0)}
+                    </span>
+                    <div>
+                      <div className="text-sm font-semibold">{r.name}</div>
+                      <div className="text-xs text-muted-foreground">{r.meta}</div>
+                    </div>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
