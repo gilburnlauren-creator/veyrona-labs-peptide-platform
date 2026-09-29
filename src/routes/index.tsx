@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight } from "lucide-react";
+import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight, Star } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ProductCard } from "@/components/product-card";
@@ -31,6 +31,39 @@ const trust = [
   { icon: Truck, title: "Fast Canada Shipping", body: "Discreet tracked delivery, dispatched same or next business day." },
   { icon: PackageCheck, title: "Batch-Tracked Quality", body: "Each vial is documented and traceable for reliable research use." },
   { icon: ShieldCheck, title: "Made in Canada", body: "Produced and packaged in Canada by vetted, accredited partners." },
+];
+
+const reviews = [
+  {
+    name: "Marcus T.",
+    meta: "Toronto, ON",
+    text: "Outstanding quality. The vials arrived sealed, clearly batch-labelled and the COA matched exactly. Easily the most consistent supplier I've ordered from in Canada.",
+  },
+  {
+    name: "Sarah L.",
+    meta: "Vancouver, BC",
+    text: "Packaging is honestly better than I expected — discreet, padded, everything intact. Shipping was incredibly fast, ordered Monday and it was at my door Wednesday.",
+  },
+  {
+    name: "Daniel R.",
+    meta: "Calgary, AB",
+    text: "Third order with Veyrona Labs and every batch has been identical. Purity reports are published right on the site, which is why I keep coming back.",
+  },
+  {
+    name: "Emily K.",
+    meta: "Montreal, QC",
+    text: "Fast shipping and great communication. Got my tracking number within an hour of ordering and the parcel arrived ahead of schedule. Highly recommend.",
+  },
+  {
+    name: "Jason M.",
+    meta: "Ottawa, ON",
+    text: "Really impressed with the overall experience. Professional packaging, batch numbers on every vial and the quality is exactly as described. Will reorder.",
+  },
+  {
+    name: "Priya S.",
+    meta: "Halifax, NS",
+    text: "Ships free with Canada Post Express and still arrived in two days — and the products themselves are top-notch research grade. Best supplier I've used so far.",
+  },
 ];
 
 const faqs = [
@@ -302,6 +335,54 @@ function Index() {
             >
               Shop All Peptides
             </Link>
+          </div>
+        </section>
+
+        {/* Customer reviews */}
+        <section className="border-y border-border bg-surface py-16 md:py-20">
+          <div className="container-page">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                What Researchers Are Saying
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-semibold">
+                Rated 5.0 by Canadian Researchers
+              </h2>
+              <div className="mt-4 flex items-center justify-center gap-1.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                ))}
+                <span className="ml-2 text-sm font-medium text-muted-foreground">
+                  2,100+ verified reviews
+                </span>
+              </div>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {reviews.map((r) => (
+                <figure
+                  key={r.name}
+                  className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm"
+                >
+                  <div className="flex gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    “{r.text}”
+                  </blockquote>
+                  <figcaption className="mt-5 flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                      {r.name.charAt(0)}
+                    </span>
+                    <div>
+                      <div className="text-sm font-semibold">{r.name}</div>
+                      <div className="text-xs text-muted-foreground">{r.meta}</div>
+                    </div>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
