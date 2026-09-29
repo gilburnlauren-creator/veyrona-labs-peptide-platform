@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { BadgeCheck, Truck, PackageCheck, ShieldCheck, Check, ArrowRight, Star } from "lucide-react";
 import heroVials from "@/assets/hero-vials.jpg";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { GoogleG } from "@/components/google-g";
 import { ProductCard } from "@/components/product-card";
 import { bestSellers, categories, products } from "@/data/products";
 
@@ -342,9 +343,12 @@ function Index() {
         <section className="border-y border-border bg-surface py-16 md:py-20">
           <div className="container-page">
             <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                What Researchers Are Saying
-              </p>
+              <div className="flex items-center justify-center gap-2">
+                <GoogleG className="h-5 w-5" />
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                  What Researchers Are Saying
+                </p>
+              </div>
               <h2 className="mt-3 font-display text-3xl font-semibold">
                 Rated 5.0 by Canadian Researchers
               </h2>
@@ -363,10 +367,16 @@ function Index() {
                   key={r.name}
                   className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm"
                 >
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                    ))}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex gap-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
+                      <BadgeCheck className="h-3.5 w-3.5" />
+                      Verified Buyer
+                    </span>
                   </div>
                   <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                     “{r.text}”
