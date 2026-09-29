@@ -415,10 +415,13 @@ function CheckoutPage() {
 
             <aside className="h-fit rounded-lg border border-border bg-surface p-5 lg:sticky lg:top-6">
               <div className="flex items-center gap-2 border-b border-border pb-4">
-                <div className="flex" aria-hidden="true">
-                  {[0,1,2,3,4].map((i) => (
-                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                  ))}
+                <div className="flex items-center gap-1.5" aria-hidden="true">
+                  <GoogleG className="h-3.5 w-3.5" />
+                  <div className="flex">
+                    {[0,1,2,3,4].map((i) => (
+                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                    ))}
+                  </div>
                 </div>
                 <span className="text-xs font-medium text-muted-foreground">Rated 5.0 by 2,100+ Canadian researchers</span>
               </div>
