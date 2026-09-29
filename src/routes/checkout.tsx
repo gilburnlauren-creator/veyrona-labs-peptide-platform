@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { Banknote, Check, CreditCard, Loader2, Lock, ShieldCheck, Truck, Star } from "lucide-react";
 
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { GoogleG } from "@/components/google-g";
 import { useCart } from "@/components/cart";
 import { vialImage } from "@/data/vial-images";
 import { getQuote, placeOrder } from "@/lib/store.functions";
