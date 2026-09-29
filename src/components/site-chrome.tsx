@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Check, Truck, Tag, Leaf } from "lucide-react";
+import { GoogleG } from "@/components/google-g";
 import logo from "@/assets/veyrona-logo.png";
 import { CartButton } from "@/components/cart";
 
@@ -21,6 +22,9 @@ export function PromoBanner() {
         </span>
         <span className="flex items-center gap-1.5">
           <Leaf className="h-3.5 w-3.5" /> Made in Canada
+        </span>
+        <span className="flex items-center gap-1.5">
+          <GoogleG className="h-3.5 w-3.5" /> 2,100+ verified buyers
         </span>
       </div>
     </div>
