@@ -33,6 +33,39 @@ const trust = [
   { icon: ShieldCheck, title: "Made in Canada", body: "Produced and packaged in Canada by vetted, accredited partners." },
 ];
 
+const reviews = [
+  {
+    name: "Marcus T.",
+    meta: "Toronto, ON",
+    text: "Outstanding quality. The vials arrived sealed, clearly batch-labelled and the COA matched exactly. Easily the most consistent supplier I've ordered from in Canada.",
+  },
+  {
+    name: "Sarah L.",
+    meta: "Vancouver, BC",
+    text: "Packaging is honestly better than I expected — discreet, padded, everything intact. Shipping was incredibly fast, ordered Monday and it was at my door Wednesday.",
+  },
+  {
+    name: "Daniel R.",
+    meta: "Calgary, AB",
+    text: "Third order with Veyrona Labs and every batch has been identical. Purity reports are published right on the site, which is why I keep coming back.",
+  },
+  {
+    name: "Emily K.",
+    meta: "Montreal, QC",
+    text: "Fast shipping and great communication. Got my tracking number within an hour of ordering and the parcel arrived ahead of schedule. Highly recommend.",
+  },
+  {
+    name: "Jason M.",
+    meta: "Ottawa, ON",
+    text: "Really impressed with the overall experience. Professional packaging, batch numbers on every vial and the quality is exactly as described. Will reorder.",
+  },
+  {
+    name: "Priya S.",
+    meta: "Halifax, NS",
+    text: "Ships free with Canada Post Express and still arrived in two days — and the products themselves are top-notch research grade. Best supplier I've used so far.",
+  },
+];
+
 const faqs = [
   {
     q: "Are Veyrona Labs peptides tested?",
