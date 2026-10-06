@@ -88,10 +88,6 @@ const faqs = [
     q: "What are these products used for?",
     a: "All compounds are supplied strictly for laboratory and in-vitro research. They are not for human or veterinary use.",
   },
-  {
-    q: "Do you ship outside Canada?",
-    a: "We currently focus on Canadian domestic shipping so orders clear quickly and arrive without customs delays.",
-  },
 ];
 
 function EmailSignup() {
