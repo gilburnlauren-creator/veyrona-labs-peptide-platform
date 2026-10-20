@@ -73,8 +73,12 @@ const faqs = [
     a: "Yes. Every batch is analysed for identity and purity, and the corresponding certificate of analysis is published on our COA page.",
   },
   {
+    q: "Where do you ship?",
+    a: "We ship anywhere in the United States and Canada. Shipping is free on every order, and all compounds are supplied strictly for laboratory and in-vitro research use.",
+  },
+  {
     q: "How much does shipping cost?",
-    a: "Shipping is free on all orders. Every parcel goes out with Canada Post Express, fully tracked and discreetly packaged.",
+    a: "Nothing — shipping is free on all orders to the United States and Canada. Every parcel goes out with Canada Post Express, fully tracked and discreetly packaged.",
   },
   {
     q: "Do you have a discount code?",
