@@ -85,10 +85,6 @@ const faqs = [
     a: "Yes — enter code LABS at checkout for 15% off your entire order. It works on every research compound we stock.",
   },
   {
-    q: "How fast do orders ship in Canada?",
-    a: "Orders placed before 2PM ET on a business day are dispatched the same day via Canada Post Express.",
-  },
-  {
     q: "What are these products used for?",
     a: "All compounds are supplied strictly for laboratory and in-vitro research. They are not for human or veterinary use.",
   },
